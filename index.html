@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestionamos</title>
+</head>
+<body>
+    <h1>¡Bienvenido a Gestionamos!</h1>
+    <p>Escribe un plan y decide si lo gestionamos para bien o para mal.</p>
+    <input type="text" id="plan" placeholder="Escribe tu plan aquí">
+    <button onclick="gestionar()">Gestionamos</button>
+    <p id="resultado"></p>
+    <script>
+        function gestionar() {
+            const positivos = ["¡Vamos a por ello!", "Claro que sí, ya está hecho.", "¡Gestionado con éxito!"];
+            const negativos = ["No puedo, estoy ocupado inventando excusas.", "Hoy no, mañana quizá.", "Prefiero no gestionar esto ahora."];
+            const esPositivo = Math.random() > 0.5;
+            const resultado = esPositivo ? positivos[Math.floor(Math.random() * positivos.length)] : negativos[Math.floor(Math.random() * negativos.length)];
+            document.getElementById("resultado").innerText = resultado;
+        }
+    </script>
+</body>
+</html>
