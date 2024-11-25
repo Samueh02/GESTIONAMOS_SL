@@ -1,24 +1,22 @@
-// Crear o cargar el ranking desde localStorage
-const rankingPlanes = JSON.parse(localStorage.getItem("rankingPlanes")) || {};
+// Inicializar rankingPlanes solo una vez
+let rankingPlanes = JSON.parse(localStorage.getItem("rankingPlanes")) || {};
+console.log("Ranking inicial:", rankingPlanes); // Depuración
 
-// Función principal para gestionar el plan
 function gestionar() {
     const nombre = document.getElementById("nombre").value.trim() || "Amigo";
-    const plan = document.getElementById("plan").value.trim().toLowerCase(); // Minúsculas para evitar duplicados
+    const plan = document.getElementById("plan").value.trim().toLowerCase();
 
     if (!plan) {
         document.getElementById("resultado").innerText = "Por favor, escribe un plan primero.";
         return;
     }
 
-    // Guardar el plan en el ranking
-    rankingPlanes[plan] = (rankingPlanes[plan] || 0) + 1; // Incrementa el contador del plan
-    localStorage.setItem("rankingPlanes", JSON.stringify(rankingPlanes)); // Guardar en localStorage
+    // Actualizar el ranking
+    rankingPlanes[plan] = (rankingPlanes[plan] || 0) + 1;
+    localStorage.setItem("rankingPlanes", JSON.stringify(rankingPlanes));
+    console.log("Ranking actualizado:", rankingPlanes);
 
-    console.log("Plan guardado:", plan); // Verificar qué plan se guarda
-    console.log("Ranking actualizado:", rankingPlanes); // Mostrar el objeto actualizado en la consola
-
-    // Respuesta aleatoria (positivo o negativo)
+    // Respuesta
     const positivos = [
         "¡Claro que sí, ya lo gestioné!",
         "Por supuesto, no hay mejor plan.",
@@ -38,6 +36,7 @@ function gestionar() {
     document.getElementById("resultado").innerText = `"${plan}" → ${respuesta}`;
     mostrarGif(esPositivo);
 }
+
 
 
 // Función para mostrar un GIF según la respuesta (positiva o negativa)
