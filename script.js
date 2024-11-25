@@ -1,5 +1,9 @@
 // Inicializar rankingPlanes solo una vez
 let rankingPlanes = JSON.parse(localStorage.getItem("rankingPlanes")) || {};
+if (!rankingPlanes || Array.isArray(rankingPlanes)) {
+    rankingPlanes = {}; // Corrige si era un array
+    localStorage.setItem("rankingPlanes", JSON.stringify(rankingPlanes));
+}
 console.log("Ranking inicial:", rankingPlanes); // Depuración
 
 function gestionar() {
