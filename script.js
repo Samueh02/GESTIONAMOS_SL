@@ -83,6 +83,12 @@ function excusaExtrema() {
 function mostrarRankingGlobal() {
     const rankingPlanes = JSON.parse(localStorage.getItem("rankingPlanes")) || {};
     console.log("Ranking leído de localStorage:", rankingPlanes); // Verificar qué datos se leen
+    
+    if (Array.isArray(rankingPlanes) || typeof rankingPlanes !== "object") {
+    console.error("Error: rankingPlanes no es un objeto válido:", rankingPlanes);
+    rankingPlanes = {};
+    localStorage.setItem("rankingPlanes", JSON.stringify(rankingPlanes));
+}
 
     // Convertir el objeto en un array para ordenarlo
     const rankingOrdenado = Object.entries(rankingPlanes).sort((a, b) => b[1] - a[1]);
