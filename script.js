@@ -15,6 +15,9 @@ function gestionar() {
     rankingPlanes[plan] = (rankingPlanes[plan] || 0) + 1; // Incrementa el contador del plan
     localStorage.setItem("rankingPlanes", JSON.stringify(rankingPlanes)); // Guardar en localStorage
 
+    console.log("Plan guardado:", plan); // Verificar qué plan se guarda
+    console.log("Ranking actualizado:", rankingPlanes); // Mostrar el objeto actualizado en la consola
+
     // Respuesta aleatoria (positivo o negativo)
     const positivos = [
         "¡Claro que sí, ya lo gestioné!",
@@ -35,6 +38,7 @@ function gestionar() {
     document.getElementById("resultado").innerText = `"${plan}" → ${respuesta}`;
     mostrarGif(esPositivo);
 }
+
 
 // Función para mostrar un GIF según la respuesta (positiva o negativa)
 function mostrarGif(esPositivo) {
@@ -75,6 +79,7 @@ function excusaExtrema() {
 // Función para mostrar el ranking global
 function mostrarRankingGlobal() {
     const rankingPlanes = JSON.parse(localStorage.getItem("rankingPlanes")) || {};
+    console.log("Ranking leído de localStorage:", rankingPlanes); // Verificar qué datos se leen
 
     // Convertir el objeto en un array para ordenarlo
     const rankingOrdenado = Object.entries(rankingPlanes).sort((a, b) => b[1] - a[1]);
@@ -91,6 +96,7 @@ function mostrarRankingGlobal() {
         });
     }
 }
+
 
 // Función para borrar el ranking
 function borrarRanking() {
