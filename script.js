@@ -1,5 +1,5 @@
-const positivoSound = new Audio('positivo.mp3'); // Sonido positivo
-const negativoSound = new Audio('negativo.mp3'); // Sonido negativo
+//const positivoSound = new Audio('positivo.mp3'); // Sonido positivo
+//const negativoSound = new Audio('negativo.mp3'); // Sonido negativo
 
 function gestionar() {
     const nombre = document.getElementById("nombre").value.trim() || "Amigo";
@@ -27,10 +27,10 @@ function gestionar() {
         : `${nombre}, ${negativos[Math.floor(Math.random() * negativos.length)]}`;
 
     if (esPositivo) {
-        positivoSound.play();
+        //positivoSound.play();
         confetti();
     } else {
-        negativoSound.play();
+        //negativoSound.play();
     }
 
     document.getElementById("resultado").innerText = respuesta;
