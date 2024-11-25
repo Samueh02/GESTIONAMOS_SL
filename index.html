@@ -4,20 +4,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestionamos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        input {
+            padding: 10px;
+            font-size: 1rem;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            width: 300px;
+            margin: 10px 0;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            color: white;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #resultado {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            color: #333;
+        }
+    </style>
 </head>
 <body>
-    <h1>¡Bienvenido a Gestionamos!</h1>
-    <p>Escribe un plan y decide si lo gestionamos para bien o para mal.</p>
-    <input type="text" id="plan" placeholder="Escribe tu plan aquí">
+    <h1>¡Gestionamos!</h1>
+    <p>Escribe tu plan y decidiremos si lo gestionamos para bien o para mal.</p>
+    <input type="text" id="plan" placeholder="Ejemplo: Salir a cenar">
     <button onclick="gestionar()">Gestionamos</button>
     <p id="resultado"></p>
+
     <script>
         function gestionar() {
-            const positivos = ["¡Vamos a por ello!", "Claro que sí, ya está hecho.", "¡Gestionado con éxito!"];
-            const negativos = ["No puedo, estoy ocupado inventando excusas.", "Hoy no, mañana quizá.", "Prefiero no gestionar esto ahora."];
+            const plan = document.getElementById("plan").value.trim();
+            const positivos = [
+                "¡Claro que sí, ya lo gestioné!",
+                "Sin duda, es el plan perfecto.",
+                "Hecha la gestión, ¡todo listo!"
+            ];
+            const negativos = [
+                "No puedo, estoy esperando la llamada de mi gato.",
+                "Es imposible, tengo que reorganizar mi colección de memes.",
+                "No es el momento, Mercurio está retrógrado."
+            ];
+
+            if (!plan) {
+                document.getElementById("resultado").innerText = "Por favor, escribe un plan primero.";
+                return;
+            }
+
             const esPositivo = Math.random() > 0.5;
-            const resultado = esPositivo ? positivos[Math.floor(Math.random() * positivos.length)] : negativos[Math.floor(Math.random() * negativos.length)];
-            document.getElementById("resultado").innerText = resultado;
+            const resultado = esPositivo
+                ? positivos[Math.floor(Math.random() * positivos.length)]
+                : negativos[Math.floor(Math.random() * negativos.length)];
+
+            document.getElementById("resultado").innerText = `"${plan}" → ${resultado}`;
         }
     </script>
 </body>
