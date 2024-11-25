@@ -1,0 +1,96 @@
+/* General */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #2b2d42;
+    color: #edf2f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    text-align: center;
+    background-color: #3c404e;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 1s ease;
+}
+
+h1 {
+    color: #8d99ae;
+    margin-bottom: 10px;
+    font-size: 2.5rem;
+}
+
+.subtitle {
+    color: #d4d4d4;
+    margin-bottom: 20px;
+}
+
+input {
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: 2px solid #8d99ae;
+    border-radius: 5px;
+    width: 80%;
+    max-width: 400px;
+    margin-bottom: 20px;
+    background-color: #edf2f4;
+    color: #2b2d42;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+input:focus {
+    border-color: #ef233c;
+}
+
+button {
+    background-color: #ef233c;
+    color: #edf2f4;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s;
+}
+
+button:hover {
+    background-color: #d90429;
+    transform: scale(1.05);
+}
+
+.resultado {
+    margin-top: 20px;
+    font-size: 1.5rem;
+    color: #8d99ae;
+    animation: fadeInUp 0.5s ease;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
