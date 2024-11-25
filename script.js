@@ -1,5 +1,5 @@
 // Crear o cargar el ranking desde localStorage
-let rankingPlanes = JSON.parse(localStorage.getItem("rankingPlanes")) || {};
+const rankingPlanes = JSON.parse(localStorage.getItem("rankingPlanes")) || {};
 
 // Función principal para gestionar el plan
 function gestionar() {
