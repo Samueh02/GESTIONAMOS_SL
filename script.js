@@ -237,6 +237,30 @@ async function mostrarGif(esPositivo) {
     gifContainer.innerHTML = "<p>No se pudo cargar el GIF. Inténtalo más tarde.</p>";
   }
 }
+function cambiarTema(tema) {
+    document.body.classList.remove("theme-claro", "theme-oscuro", "theme-personalizado");
+
+    if (tema === "claro") {
+        document.body.classList.add("theme-claro");
+    } else if (tema === "oscuro") {
+        document.body.classList.add("theme-oscuro");
+    } else if (tema === "personalizado") {
+        const colorFondo = prompt("Color de fondo (hex o nombre):", "#f0f0f0");
+        const colorTexto = prompt("Color de texto (hex o nombre):", "#333");
+        document.body.style.setProperty("--color-fondo", colorFondo);
+        document.body.style.setProperty("--color-texto", colorTexto);
+    }
+
+    // Guardar el tema seleccionado
+    localStorage.setItem("tema", tema);
+}
+
+// Aplicar el tema al cargar la página
+window.onload = function () {
+    cargarRankingDesdeFirebase(mostrarRankingGlobal);
+    const temaGuardado = localStorage.getItem("tema") || "oscuro";
+    cambiarTema(temaGuardado);
+};
 
 // Exponer funciones al ámbito global
 window.gestionar = gestionar;
