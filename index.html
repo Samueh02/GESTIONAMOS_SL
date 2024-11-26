@@ -7,10 +7,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 </head>
 <body>
-    
     <div class="container">
         <h1>Gestionamos</h1>
         <p class="subtitle">Introduce tu plan y descubre si lo gestionamos para bien o para mal.</p>
@@ -20,21 +18,21 @@
         <button onclick="excusaExtrema()">¡Excusa extrema!</button>
         <button onclick="mostrarRankingGlobal()">Ver Ranking</button>
         <button onclick="borrarRanking()">Borrar Ranking</button>
-        <button onclick="cambiarTema('claro')">Claro</button>
-        <button onclick="cambiarTema('oscuro')">Oscuro</button>
-        <button onclick="cambiarTema('personalizado')">Personalizado</button>
         <p id="resultado" class="resultado"></p>
         <div id="gif"></div>
         <div id="ranking-container" class="ranking-hidden"></div>
         <canvas id="rankingChart" width="400" height="200"></canvas>
     </div>
-    <div class="theme-selector">
-        <button onclick="cambiarTema('claro')">Claro</button>
-        <button onclick="cambiarTema('oscuro')">Oscuro</button>
-        <button onclick="cambiarTema('personalizado')">Personalizado</button>
+
+    <!-- Contenedor para cambiar de tema -->
+    <div class="theme-container">
+        <h2>Cambiar Tema</h2>
+        <div class="theme-selector">
+            <button onclick="cambiarTema('claro')">Claro</button>
+            <button onclick="cambiarTema('oscuro')">Oscuro</button>
+            <button onclick="cambiarTema('personalizado')">Personalizado</button>
+        </div>
     </div>
-    <div id="ranking-container" class="ranking-hidden"></div>
-   
 
     <!-- Importar el script principal como módulo -->
     <script type="module" src="script.js"></script>
