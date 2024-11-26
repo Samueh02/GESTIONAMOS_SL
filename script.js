@@ -51,14 +51,20 @@ function mostrarGif(esPositivo) {
         "https://media.giphy.com/media/5GoVLqeAOo6PK/giphy.gif",
         "https://media.giphy.com/media/3o7TKP9lnsgKIMYgfu/giphy.gif",
         "https://media.giphy.com/media/xT9IgG50Fb7Mi0prBC/giphy.gif",
-        "https://media.giphy.com/media/26FPCXdkvDbKBbgOI/giphy.gif"
+        "https://media.giphy.com/media/26FPCXdkvDbKBbgOI/giphy.gif",
+        "https://media.giphy.com/media/3orieRJQ5nVSTkB5cA/giphy.gif",
+        "https://media.giphy.com/media/l2JehQ2GitHGdVG9y/giphy.gif",
+        "https://media.giphy.com/media/3ohs4yz8VXr3XZQ4kE/giphy.gif"
     ];
 
     const gifsNegativos = [
-        "https://media.giphy.com/media/l2JehQ2GitHGdVG9y/giphy.gif",
-        "https://media.giphy.com/media/3orieRJQ5nVSTkB5cA/giphy.gif",
-        "https://media.giphy.com/media/3oEdv3Ul4ZOOzwFU4k/giphy.gif",
-        "https://media.giphy.com/media/5xtDarlqG5kb5SLipra/giphy.gif"
+        "https://media.giphy.com/media/26FLdmIp6wJr91JAI/giphy.gif",
+        "https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif",
+        "https://media.giphy.com/media/3oriO7A7bt1wsEP4cw/giphy.gif",
+        "https://media.giphy.com/media/3o7aD4ZQ3t6tTcDlWM/giphy.gif",
+        "https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif",
+        "https://media.giphy.com/media/26FPCXdkvDbKBbgOI/giphy.gif",
+        "https://media.giphy.com/media/l2Je9dD8A4wFFkiLK/giphy.gif"
     ];
 
     const gif = esPositivo
@@ -68,16 +74,30 @@ function mostrarGif(esPositivo) {
     gifContainer.innerHTML = `<img src="${gif}" alt="Resultado">`;
 }
 
+
 // Función para Excusa Extrema
 function excusaExtrema() {
     const excusasExtremas = [
-        "No puedo, mi tortuga se unió a una banda de moteros.",
-        "Estoy ocupado vigilando que los árboles no se muevan.",
-        "No puedo, mi secadora se comió mis calcetines y estoy en duelo."
+        "No puedo, estoy ocupado organizando una reunión para mis calcetines perdidos.",
+        "Imposible, tengo que enseñar a mi gato a programar en JavaScript.",
+        "No puedo, hoy es el aniversario de mi planta.",
+        "Estoy atrapado en una maratón de memes y no puedo salir.",
+        "Es imposible, tengo que meditar para decidir qué pizza pedir.",
+        "No puedo, estoy esperando que Netflix me pregunte si sigo aquí.",
+        "No, porque estoy entrenando para las Olimpiadas de procrastinación.",
+        "Lo siento, tengo una cita con mi sillón para discutir temas importantes.",
+        "Estoy ocupado resolviendo un misterio: ¿quién se comió mi chocolate?",
+        "No puedo, estoy escribiendo mi autobiografía ficticia.",
+        "Es imposible, estoy buscando el calcetín izquierdo del Triángulo de las Bermudas.",
+        "No puedo, mi frigorífico y yo estamos reconciliándonos después de la última limpieza.",
+        "Lo siento, estoy traduciendo canciones de reguetón al latín.",
+        "Hoy no puedo, estoy dirigiendo un casting para mi próxima siesta.",
+        "No puedo, tengo que practicar mis discursos para cuando me entreguen un premio ficticio."
     ];
     const excusa = excusasExtremas[Math.floor(Math.random() * excusasExtremas.length)];
     document.getElementById("resultado").innerText = excusa;
 }
+
 
 // Función para mostrar el ranking global
 function mostrarRankingGlobal() {
