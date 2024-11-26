@@ -85,6 +85,28 @@ function gestionar() {
     mostrarGif(esPositivo);
 }
 
+function excusaExtrema() {
+    const excusasExtremas = [
+        "No puedo, mi tortuga está aprendiendo a tocar la guitarra eléctrica.",
+        "Imposible, estoy ocupado diseñando mi próximo castillo de naipes.",
+        "No puedo, tengo que contar todas las estrellas esta noche.",
+        "Estoy practicando cómo quedarme quieto como una estatua, y no puedo moverme.",
+        "No puedo, tengo una reunión importante con mi almohada.",
+        "Hoy no puedo, estoy entrenando para el campeonato mundial de procrastinación.",
+        "Imposible, tengo que enseñarle a mi gato a bailar salsa.",
+        "Lo siento, pero estoy desarrollando mi habilidad para hablar con plantas.",
+        "No puedo, estoy esperando una señal del universo para tomar decisiones.",
+        "Estoy demasiado ocupado investigando por qué las tostadas siempre caen del lado de la mantequilla."
+    ];
+
+    // Selecciona una excusa aleatoria
+    const excusa = excusasExtremas[Math.floor(Math.random() * excusasExtremas.length)];
+
+    // Muestra la excusa en el elemento de resultado
+    document.getElementById("resultado").innerText = excusa;
+}
+
+
 // Extraer palabras clave y contarlas
 function procesarPalabras() {
     const palabrasRelevantes = {};
