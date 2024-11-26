@@ -235,11 +235,12 @@ button:hover {
     margin-top: 30px;
     text-align: center;
     padding: 20px;
-    background-color: #3c404e; /* Fondo similar al contenedor principal */
+    background-color: var(--color-container); /* Consistencia */
     border-radius: 15px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     animation: fadeIn 0.5s ease;
 }
+
 
 .theme-container h2 {
     color: #edf2f4; /* Texto claro para mayor contraste */
@@ -268,4 +269,25 @@ button:hover {
 .theme-selector button:focus {
     outline: 2px solid #ef233c; /* Indicador de foco */
     transform: scale(1.1);
+}
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+        padding: 20px;
+        height: auto;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 600px;
+    }
+
+    button {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    #rankingChart {
+        max-width: 100%;
+    }
 }
