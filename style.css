@@ -173,3 +173,8 @@ button:focus-visible {
         margin: 10px 0;
     }
 }
+#rankingChart {
+    margin: 20px auto;
+    max-width: 90%;
+    display: block;
+}
