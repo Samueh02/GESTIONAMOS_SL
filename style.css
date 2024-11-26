@@ -231,34 +231,39 @@ button:hover {
 }
 /* Contenedor del selector de temas */
 .theme-container {
-    margin-top: 20px;
+    margin-top: 30px;
     text-align: center;
     padding: 20px;
-    background-color: var(--color-container);
+    background-color: #3c404e; /* Fondo similar al contenedor principal */
     border-radius: 15px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     animation: fadeIn 0.5s ease;
 }
 
 .theme-container h2 {
-    color: var(--color-texto);
+    color: #edf2f4; /* Texto claro para mayor contraste */
     margin-bottom: 15px;
     font-size: 1.5rem;
 }
 
 .theme-selector button {
-    margin: 5px;
-    padding: 10px 15px;
+    margin: 10px;
+    padding: 10px 20px;
     font-size: 1rem;
     border-radius: 5px;
     cursor: pointer;
-    background-color: var(--color-boton);
-    color: var(--color-texto);
+    background-color: #8d99ae; /* Fondo de botón acorde con el tema */
+    color: #edf2f4; /* Texto blanco */
     border: none;
-    transition: background-color 0.3s ease, transform 0.2s;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .theme-selector button:hover {
-    background-color: var(--color-boton-hover);
+    background-color: #ef233c; /* Efecto hover */
     transform: scale(1.05);
+}
+
+.theme-selector button:focus {
+    outline: 2px solid #ef233c; /* Indicador de foco */
+    transform: scale(1.1);
 }
