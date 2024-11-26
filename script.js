@@ -117,22 +117,23 @@ function excusaExtrema() {
 function procesarPalabras() {
   const palabrasRelevantes = {};
   const palabrasIrrelevantes = [
-    "el", "la", "los", "las", "un", "unos", "una", "unas",
-    "a", "ante", "bajo", "cabe", "con", "contra", "de", "desde", "en",
+    "el", "la", "los", "las", "un", "unos", "una", "unas", // Artículos
+    "a", "al", "ante", "bajo", "cabe", "con", "contra", "de", "del", "desde", "en", // Preposiciones
     "entre", "hacia", "hasta", "para", "por", "según", "sin", "so", "sobre", "tras",
-    "y", "e", "ni", "que", "o", "u", "pero", "mas", "sino", "aunque",
-    "mi", "tu", "su", "nuestro", "nuestra", "nuestros", "nuestras", "vuestro",
-    "vuestra", "vuestros", "vuestras", "este", "estos", "esta", "estas",
-    "ese", "esos", "esa", "esas", "aquel", "aquellos", "aquella", "aquellas",
-    "yo", "tú", "él", "ella", "nosotros", "nosotras", "vosotros", "vosotras", "ellos", "ellas",
-    "me", "te", "se", "nos", "os", "lo", "la", "los", "las",
-    "hay", "ser", "es", "soy", "somos", "son", "era", "eran", "fue", "fueron"
+    "y", "e", "ni", "que", "o", "u", "pero", "mas", "sino", "aunque", // Conjunciones
+    "mi", "tu", "su", "nuestro", "nuestra", "nuestros", "nuestras", // Pronombres posesivos
+    "vuestro", "vuestra", "vuestros", "vuestras", "este", "estos", "esta", "estas", 
+    "ese", "esos", "esa", "esas", "aquel", "aquellos", "aquella", "aquellas", // Demostrativos
+    "yo", "tú", "él", "ella", "nosotros", "nosotras", "vosotros", "vosotras", "ellos", "ellas", // Personales
+    "me", "te", "se", "nos", "os", "lo", "la", "los", "las", // Reflexivos y objetos
+    "hay", "ser", "es", "soy", "somos", "son", "era", "eran", "fue", "fueron", // Verbos comunes
+    "del", "al" // Combinaciones comunes como "al" y "del"
   ];
 
   Object.keys(rankingPlanes).forEach(plan => {
-    const palabras = plan.split(/\s+/);
+    const palabras = plan.split(/\s+/); // Dividir por espacios
     palabras.forEach(palabra => {
-      const palabraLimpia = palabra.toLowerCase().replace(/[^a-záéíóúñ]/g, "");
+      const palabraLimpia = palabra.toLowerCase().replace(/[^a-záéíóúñ]/g, ""); // Limpiar caracteres especiales
       if (!palabrasIrrelevantes.includes(palabraLimpia) && palabraLimpia) {
         palabrasRelevantes[palabraLimpia] = (palabrasRelevantes[palabraLimpia] || 0) + rankingPlanes[plan];
       }
@@ -141,6 +142,7 @@ function procesarPalabras() {
 
   return palabrasRelevantes;
 }
+
 
 // Mostrar ranking de palabras relevantes
 function mostrarRankingGlobal() {
