@@ -69,9 +69,10 @@ button:hover {
 }
 
 button:focus {
-    outline: 2px solid #ff6f61;
+    outline: 2px solid var(--color-boton);
     transform: scale(1.1);
 }
+
 
 .resultado {
     margin-top: 20px;
@@ -252,16 +253,17 @@ button:hover {
     font-size: 1rem;
     border-radius: 5px;
     cursor: pointer;
-    background-color: #8d99ae; /* Fondo de botón acorde con el tema */
-    color: #edf2f4; /* Texto blanco */
+    background-color: var(--color-boton); /* Usa el color del botón principal */
+    color: var(--color-texto);
     border: none;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .theme-selector button:hover {
-    background-color: #ef233c; /* Efecto hover */
+    background-color: var(--color-boton-hover);
     transform: scale(1.05);
 }
+
 
 .theme-selector button:focus {
     outline: 2px solid #ef233c; /* Indicador de foco */
