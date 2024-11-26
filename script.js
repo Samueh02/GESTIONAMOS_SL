@@ -238,8 +238,10 @@ async function mostrarGif(esPositivo) {
   }
 }
 function cambiarTema(tema) {
+    // Eliminar clases de tema existentes
     document.body.classList.remove("theme-claro", "theme-oscuro", "theme-personalizado");
 
+    // Añadir la clase del tema seleccionado
     if (tema === "claro") {
         document.body.classList.add("theme-claro");
     } else if (tema === "oscuro") {
@@ -255,14 +257,8 @@ function cambiarTema(tema) {
     localStorage.setItem("tema", tema);
 }
 
-// Aplicar el tema al cargar la página
-window.onload = function () {
-    cargarRankingDesdeFirebase(mostrarRankingGlobal);
-    const temaGuardado = localStorage.getItem("tema") || "oscuro";
-    cambiarTema(temaGuardado);
-};
-
-// Exponer funciones al ámbito global
+// Exponer la función al ámbito global
+window.cambiarTema = cambiarTema;
 window.gestionar = gestionar;
 window.excusaExtrema = excusaExtrema;
 window.mostrarRankingGlobal = mostrarRankingGlobal;
