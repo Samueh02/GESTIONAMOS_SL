@@ -156,6 +156,38 @@ function mostrarRankingGlobal() {
     });
   }
 }
+// Configurar la API Key de Giphy
+const GIPHY_API_KEY = "5Vq0fiANu7FZmDW1ntUNUTPanSbmHC1o";
+
+// Función para obtener un GIF aleatorio
+async function obtenerGifAleatorio(tag) {
+  const url = `https://api.giphy.com/v1/gifs/random?api_key=${GIPHY_API_KEY}&tag=${tag}&rating=g`;
+
+  try {
+    const response = await fetch(url); // Hacer la solicitud a Giphy
+    const data = await response.json();
+    return data.data.images.original.url; // Devolver la URL del GIF
+  } catch (error) {
+    console.error("Error al obtener el GIF:", error);
+    return null; // En caso de error, devolver null
+  }
+}
+async function mostrarGif(esPositivo) {
+  const gifContainer = document.getElementById("gif");
+
+  // Determinar el tag de búsqueda en Giphy
+  const tag = esPositivo ? "happy" : "sad";
+
+  // Obtener un GIF aleatorio desde Giphy
+  const gifUrl = await obtenerGifAleatorio(tag);
+
+  // Mostrar el GIF o un mensaje de error si no se pudo obtener
+  if (gifUrl) {
+    gifContainer.innerHTML = `<img src="${gifUrl}" alt="Resultado">`;
+  } else {
+    gifContainer.innerHTML = "<p>No se pudo cargar el GIF. Inténtalo más tarde.</p>";
+  }
+}
 
 // Mostrar un GIF según la respuesta
 function mostrarGif(esPositivo) {
