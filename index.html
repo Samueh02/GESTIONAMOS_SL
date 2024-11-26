@@ -10,11 +10,7 @@
 
 </head>
 <body>
-    <div class="theme-selector">
-        <button onclick="cambiarTema('claro')">Claro</button>
-        <button onclick="cambiarTema('oscuro')">Oscuro</button>
-        <button onclick="cambiarTema('personalizado')">Personalizado</button>
-    </div>
+    
     <div class="container">
         <h1>Gestionamos</h1>
         <p class="subtitle">Introduce tu plan y descubre si lo gestionamos para bien o para mal.</p>
@@ -30,6 +26,11 @@
         <canvas id="rankingChart" width="400" height="200"></canvas>
     </div>
     <div id="ranking-container" class="ranking-hidden"></div>
+    <div class="theme-selector">
+        <button onclick="cambiarTema('claro')">Claro</button>
+        <button onclick="cambiarTema('oscuro')">Oscuro</button>
+        <button onclick="cambiarTema('personalizado')">Personalizado</button>
+    </div>
 
     <!-- Importar el script principal como módulo -->
     <script type="module" src="script.js"></script>
