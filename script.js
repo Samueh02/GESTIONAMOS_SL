@@ -1,10 +1,52 @@
-// Inicializar rankingPlanes
-let rankingPlanes = JSON.parse(localStorage.getItem("rankingPlanes")) || {};
+// Configuración de Firebase (copia tus datos de configuración desde Firebase Console)
+const firebaseConfig = {
+    apiKey: "TU_API_KEY",
+    authDomain: "TU_AUTH_DOMAIN",
+    databaseURL: "TU_DATABASE_URL",
+    projectId: "TU_PROJECT_ID",
+    storageBucket: "TU_STORAGE_BUCKET",
+    messagingSenderId: "TU_MESSAGING_SENDER_ID",
+    appId: "TU_APP_ID"
+};
+
+// Inicializar Firebase
+firebase.initializeApp(firebaseConfig);
+const database = firebase.database();
+
+let rankingPlanes = {};
 
 // Mostrar el ranking al cargar la página
 window.onload = function () {
-    mostrarRankingGlobal();
+    cargarRankingDesdeFirebase(mostrarRankingGlobal);
 };
+
+// Guardar datos en Firebase
+function guardarRankingEnFirebase(rankingPlanes) {
+    firebase.database().ref("rankingPlanes").set(rankingPlanes, (error) => {
+        if (error) {
+            console.error("Error al guardar en Firebase:", error);
+        } else {
+            console.log("Ranking guardado en Firebase.");
+        }
+    });
+}
+
+// Cargar datos desde Firebase
+function cargarRankingDesdeFirebase(callback) {
+    firebase.database().ref("rankingPlanes").get().then((snapshot) => {
+        if (snapshot.exists()) {
+            rankingPlanes = snapshot.val();
+            console.log("Ranking cargado desde Firebase:", rankingPlanes);
+            callback();
+        } else {
+            console.log("No hay datos disponibles en Firebase.");
+            rankingPlanes = {};
+            callback();
+        }
+    }).catch((error) => {
+        console.error("Error al cargar desde Firebase:", error);
+    });
+}
 
 // Gestionar planes
 function gestionar() {
@@ -16,12 +58,11 @@ function gestionar() {
         return;
     }
 
-    // Guardar el plan en el ranking
+    // Actualizar el ranking
     rankingPlanes[plan] = (rankingPlanes[plan] || 0) + 1;
-    localStorage.setItem("rankingPlanes", JSON.stringify(rankingPlanes));
 
-    console.log("Plan guardado:", plan);
-    console.log("Ranking actualizado:", rankingPlanes);
+    // Guardar en Firebase
+    guardarRankingEnFirebase(rankingPlanes);
 
     // Respuesta aleatoria
     const positivos = [
@@ -46,7 +87,6 @@ function gestionar() {
 
 // Extraer palabras clave y contarlas
 function procesarPalabras() {
-    const rankingPlanes = JSON.parse(localStorage.getItem("rankingPlanes")) || {};
     const palabrasRelevantes = {};
     const palabrasIrrelevantes = ["el", "la", "y", "de", "en", "a", "con", "que", "por", "al"]; // Ignorar
 
