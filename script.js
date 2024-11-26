@@ -144,21 +144,56 @@ function procesarPalabras() {
 
 // Mostrar ranking de palabras relevantes
 function mostrarRankingGlobal() {
-  const palabrasRelevantes = procesarPalabras();
-  const rankingOrdenado = Object.entries(palabrasRelevantes).sort((a, b) => b[1] - a[1]);
+    const palabrasRelevantes = procesarPalabras();
+    const rankingOrdenado = Object.entries(palabrasRelevantes).sort((a, b) => b[1] - a[1]);
 
-  const resultado = document.getElementById("ranking-container");
-  resultado.innerHTML = "<h3>Palabras más relevantes:</h3>";
+    const resultado = document.getElementById("ranking-container");
+    resultado.innerHTML = "<h3>Palabras más relevantes:</h3>";
 
-  if (rankingOrdenado.length === 0) {
-    resultado.innerHTML += "<p>No se han introducido planes todavía.</p>";
-  } else {
-    rankingOrdenado.forEach(([palabra, count], index) => {
-      resultado.innerHTML += `<p>${index + 1}. ${palabra} - ${count} veces</p>`;
+    if (rankingOrdenado.length === 0) {
+        resultado.innerHTML += "<p>No se han introducido planes todavía.</p>";
+    } else {
+        rankingOrdenado.forEach(([palabra, count], index) => {
+            resultado.innerHTML += `<p>${index + 1}. ${palabra} - ${count} veces</p>`;
+        });
+    }
+
+    resultado.classList.add("ranking-visible");
+
+    // Renderizar gráfico con los datos
+    renderizarGrafico(palabrasRelevantes);
+}
+
+
+function renderizarGrafico(palabrasRelevantes) {
+    const ctx = document.getElementById("rankingChart").getContext("2d");
+
+    // Procesar datos para el gráfico
+    const labels = Object.keys(palabrasRelevantes);
+    const data = Object.values(palabrasRelevantes);
+
+    // Crear el gráfico
+    new Chart(ctx, {
+        type: "bar",
+        data: {
+            labels: labels,
+            datasets: [{
+                label: "Relevancia de Palabras",
+                data: data,
+                backgroundColor: "rgba(75, 192, 192, 0.2)",
+                borderColor: "rgba(75, 192, 192, 1)",
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
     });
-  }
-
-  resultado.classList.add("ranking-visible");
 }
 
 // Configurar la API Key de Giphy
