@@ -148,8 +148,11 @@ button:hover {
 }
 
 button:focus {
-    outline: 2px solid #ff6f61;
-    transform: scale(1.1);
+     outline: none; /* Opcional: elimina el contorno */
+    transform: none; /* Asegura que no quede escalado */
+}
+button:focus-visible {
+    outline: 2px solid #ff6f61; /* Solo muestra el foco si se navega con teclado */
 }
 
 /* Responsividad */
