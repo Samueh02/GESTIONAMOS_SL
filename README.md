@@ -94,10 +94,10 @@ Este proyecto está bajo la Licencia MIT. Puedes usarlo, modificarlo y compartir
 
 ## **Capturas de pantalla**
 Página principal:
-(Agrega aquí una imagen de la página principal)
+
 
 Ranking dinámico:
-(Agrega aquí una captura del ranking de palabras relevantes)
+
 
 ¡Esperamos que disfrutes de Gestionamos tanto como nosotros disfrutamos creándolo!
 
