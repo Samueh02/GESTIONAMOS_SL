@@ -1,6 +1,6 @@
 // Importar las funciones necesarias desde Firebase
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
-import { getDatabase, ref, set, get, child } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
+import { getDatabase, ref, set, get } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
 
 // Configuración de Firebase
 const firebaseConfig = {
@@ -156,6 +156,7 @@ function mostrarRankingGlobal() {
     });
   }
 }
+
 // Configurar la API Key de Giphy
 const GIPHY_API_KEY = "5Vq0fiANu7FZmDW1ntUNUTPanSbmHC1o";
 
@@ -172,6 +173,8 @@ async function obtenerGifAleatorio(tag) {
     return null; // En caso de error, devolver null
   }
 }
+
+// Mostrar un GIF según la respuesta
 async function mostrarGif(esPositivo) {
   const gifContainer = document.getElementById("gif");
 
