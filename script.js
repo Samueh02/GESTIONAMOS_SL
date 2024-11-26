@@ -117,14 +117,16 @@ function excusaExtrema() {
 function procesarPalabras() {
   const palabrasRelevantes = {};
   const palabrasIrrelevantes = [
-    "el", "la", "los", "las", "un", "unos", "una", "unas", // Artículos
-    "a", "ante", "bajo", "cabe", "con", "contra", "de", "desde", "en", "entre", "hacia", "hasta", "para", "por", "según", "sin", "so", "sobre", "tras", // Preposiciones
-    "y", "e", "ni", "que", "o", "u", "pero", "mas", "sino", "aunque", // Conjunciones
-    "mi", "tu", "su", "nuestro", "nuestra", "nuestros", "nuestras", "vuestro", "vuestra", "vuestros", "vuestras", // Pronombres posesivos
-    "este", "estos", "esta", "estas", "ese", "esos", "esa", "esas", "aquel", "aquellos", "aquella", "aquellas", // Pronombres demostrativos
-    "yo", "tú", "él", "ella", "nosotros", "nosotras", "vosotros", "vosotras", "ellos", "ellas", // Pronombres personales
-    "me", "te", "se", "nos", "os", "lo", "la", "los", "las", // Pronombres reflexivos y objetos
-    "hay", "ser", "es", "soy", "somos", "son", "era", "eran", "fue", "fueron" // Verbos comunes
+    "el", "la", "los", "las", "un", "unos", "una", "unas",
+    "a", "ante", "bajo", "cabe", "con", "contra", "de", "desde", "en",
+    "entre", "hacia", "hasta", "para", "por", "según", "sin", "so", "sobre", "tras",
+    "y", "e", "ni", "que", "o", "u", "pero", "mas", "sino", "aunque",
+    "mi", "tu", "su", "nuestro", "nuestra", "nuestros", "nuestras", "vuestro",
+    "vuestra", "vuestros", "vuestras", "este", "estos", "esta", "estas",
+    "ese", "esos", "esa", "esas", "aquel", "aquellos", "aquella", "aquellas",
+    "yo", "tú", "él", "ella", "nosotros", "nosotras", "vosotros", "vosotras", "ellos", "ellas",
+    "me", "te", "se", "nos", "os", "lo", "la", "los", "las",
+    "hay", "ser", "es", "soy", "somos", "son", "era", "eran", "fue", "fueron"
   ];
 
   Object.keys(rankingPlanes).forEach(plan => {
@@ -145,7 +147,7 @@ function mostrarRankingGlobal() {
   const palabrasRelevantes = procesarPalabras();
   const rankingOrdenado = Object.entries(palabrasRelevantes).sort((a, b) => b[1] - a[1]);
 
-  const resultado = document.getElementById("resultado");
+  const resultado = document.getElementById("ranking-container");
   resultado.innerHTML = "<h3>Palabras más relevantes:</h3>";
 
   if (rankingOrdenado.length === 0) {
@@ -155,6 +157,8 @@ function mostrarRankingGlobal() {
       resultado.innerHTML += `<p>${index + 1}. ${palabra} - ${count} veces</p>`;
     });
   }
+
+  resultado.classList.add("ranking-visible");
 }
 
 // Configurar la API Key de Giphy
@@ -165,12 +169,12 @@ async function obtenerGifAleatorio(tag) {
   const url = `https://api.giphy.com/v1/gifs/random?api_key=${GIPHY_API_KEY}&tag=${tag}&rating=g`;
 
   try {
-    const response = await fetch(url); // Hacer la solicitud a Giphy
+    const response = await fetch(url);
     const data = await response.json();
-    return data.data.images.original.url; // Devolver la URL del GIF
+    return data.data.images.original.url;
   } catch (error) {
     console.error("Error al obtener el GIF:", error);
-    return null; // En caso de error, devolver null
+    return null;
   }
 }
 
@@ -178,15 +182,16 @@ async function obtenerGifAleatorio(tag) {
 async function mostrarGif(esPositivo) {
   const gifContainer = document.getElementById("gif");
 
-  // Determinar el tag de búsqueda en Giphy
   const tag = esPositivo ? "happy" : "sad";
-
-  // Obtener un GIF aleatorio desde Giphy
   const gifUrl = await obtenerGifAleatorio(tag);
 
-  // Mostrar el GIF o un mensaje de error si no se pudo obtener
   if (gifUrl) {
     gifContainer.innerHTML = `<img src="${gifUrl}" alt="Resultado">`;
+    const gifElement = gifContainer.querySelector("img");
+
+    gifElement.onload = () => {
+      gifElement.classList.add("visible");
+    };
   } else {
     gifContainer.innerHTML = "<p>No se pudo cargar el GIF. Inténtalo más tarde.</p>";
   }
@@ -199,6 +204,5 @@ window.mostrarRankingGlobal = mostrarRankingGlobal;
 window.borrarRanking = function () {
   rankingPlanes = {};
   guardarRankingEnFirebase(rankingPlanes);
-  console.log("Ranking borrado.");
   document.getElementById("resultado").innerHTML = "<p>Ranking eliminado.</p>";
 };
