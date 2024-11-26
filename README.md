@@ -71,14 +71,14 @@
 ---
 
 ## **Próximas mejoras**
-Soporte para usuarios múltiples:
-Implementar un sistema donde cada usuario pueda ver su propio ranking.
-Estadísticas avanzadas:
-Mostrar gráficos visuales con tendencias de las palabras más populares usando herramientas como Chart.js.
-Modo temático:
-Ofrecer opciones de personalización como temas claros, oscuros o personalizados.
-Integración social:
-Compartir los planes gestionados o rankings en redes sociales.
+1. Soporte para usuarios múltiples:
+   - Implementar un sistema donde cada usuario pueda ver su propio ranking.
+2. Estadísticas avanzadas:
+   - Mostrar gráficos visuales con tendencias de las palabras más populares usando                  herramientas como Chart.js.
+3. Modo temático:
+   - Ofrecer opciones de personalización como temas claros, oscuros o personalizados.
+4. Integración social:
+   - Compartir los planes gestionados o rankings en redes sociales.
 
 ---
 
