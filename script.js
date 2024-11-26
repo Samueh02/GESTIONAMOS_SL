@@ -177,3 +177,14 @@ function mostrarGif(esPositivo) {
 
   gifContainer.innerHTML = `<img src="${gif}" alt="Resultado">`;
 }
+
+// Exponer funciones al ámbito global
+window.gestionar = gestionar;
+window.excusaExtrema = excusaExtrema;
+window.mostrarRankingGlobal = mostrarRankingGlobal;
+window.borrarRanking = function () {
+  rankingPlanes = {};
+  guardarRankingEnFirebase(rankingPlanes);
+  console.log("Ranking borrado.");
+  document.getElementById("resultado").innerHTML = "<p>Ranking eliminado.</p>";
+};
