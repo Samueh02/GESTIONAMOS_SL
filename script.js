@@ -88,7 +88,17 @@ function gestionar() {
 // Extraer palabras clave y contarlas
 function procesarPalabras() {
     const palabrasRelevantes = {};
-    const palabrasIrrelevantes = ["el", "la", "y", "de", "en", "a", "con", "que", "por", "al"]; // Ignorar
+    const palabrasIrrelevantes = [
+    "el", "la", "los", "las", "un", "unos", "una", "unas", // Artículos
+    "a", "ante", "bajo", "cabe", "con", "contra", "de", "desde", "en", "entre", "hacia", "hasta", "para", "por", "según", "sin", "so", "sobre", "tras", // Preposiciones
+    "y", "e", "ni", "que", "o", "u", "pero", "mas", "sino", "aunque", // Conjunciones
+    "mi", "tu", "su", "nuestro", "nuestra", "nuestros", "nuestras", "vuestro", "vuestra", "vuestros", "vuestras", // Pronombres posesivos
+    "este", "estos", "esta", "estas", "ese", "esos", "esa", "esas", "aquel", "aquellos", "aquella", "aquellas", // Pronombres demostrativos
+    "yo", "tú", "él", "ella", "nosotros", "nosotras", "vosotros", "vosotras", "ellos", "ellas", // Pronombres personales
+    "me", "te", "se", "nos", "os", "lo", "la", "los", "las", // Pronombres reflexivos y objetos
+    "hay", "ser", "es", "soy", "somos", "son", "era", "eran", "fue", "fueron", // Verbos comunes
+    "sí", "no", "porque", "como", "cuando", "donde", "quién", "qué", "cual", "cuales", "cuyo", "cuyos", "cuyas", "cuya" // Adverbios y palabras interrogativas
+];
 
     Object.keys(rankingPlanes).forEach(plan => {
         const palabras = plan.split(/\s+/);
