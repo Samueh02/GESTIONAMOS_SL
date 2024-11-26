@@ -6,6 +6,8 @@
     <title>Gestionamos</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 <body>
     <div class="container">
@@ -19,6 +21,8 @@
         <button onclick="borrarRanking()">Borrar Ranking</button>
         <p id="resultado" class="resultado"></p>
         <div id="gif"></div>
+        <div id="ranking-container" class="ranking-hidden"></div>
+        <canvas id="rankingChart" width="400" height="200"></canvas>
     </div>
     <div id="ranking-container" class="ranking-hidden"></div>
 
