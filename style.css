@@ -178,3 +178,54 @@ button:focus-visible {
     max-width: 90%;
     display: block;
 }
+/* Variables de tema por defecto */
+:root {
+    --color-fondo: #2b2d42;
+    --color-texto: #edf2f4;
+    --color-boton: #ef233c;
+    --color-boton-hover: #d90429;
+    --color-container: #3c404e;
+}
+
+/* Tema Claro */
+.theme-claro {
+    --color-fondo: #edf2f4;
+    --color-texto: #2b2d42;
+    --color-boton: #3a86ff;
+    --color-boton-hover: #2667d5;
+    --color-container: #ffffff;
+}
+
+/* Tema Oscuro */
+.theme-oscuro {
+    --color-fondo: #121212;
+    --color-texto: #ffffff;
+    --color-boton: #bb86fc;
+    --color-boton-hover: #985eff;
+    --color-container: #1e1e1e;
+}
+
+/* Aplicar las variables */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.container {
+    background-color: var(--color-container);
+    transition: background-color 0.5s ease;
+}
+
+button {
+    background-color: var(--color-boton);
+    color: var(--color-texto);
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: var(--color-boton-hover);
+}
