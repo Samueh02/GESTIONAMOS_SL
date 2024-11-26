@@ -189,27 +189,6 @@ async function mostrarGif(esPositivo) {
   }
 }
 
-// Mostrar un GIF según la respuesta
-function mostrarGif(esPositivo) {
-  const gifContainer = document.getElementById("gif");
-
-  const gifsPositivos = [
-    "https://media.giphy.com/media/5GoVLqeAOo6PK/giphy.gif",
-    "https://media.giphy.com/media/3o7TKP9lnsgKIMYgfu/giphy.gif"
-  ];
-
-  const gifsNegativos = [
-    "https://media.giphy.com/media/26FLdmIp6wJr91JAI/giphy.gif",
-    "https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif"
-  ];
-
-  const gif = esPositivo
-    ? gifsPositivos[Math.floor(Math.random() * gifsPositivos.length)]
-    : gifsNegativos[Math.floor(Math.random() * gifsNegativos.length)];
-
-  gifContainer.innerHTML = `<img src="${gif}" alt="Resultado">`;
-}
-
 // Exponer funciones al ámbito global
 window.gestionar = gestionar;
 window.excusaExtrema = excusaExtrema;
