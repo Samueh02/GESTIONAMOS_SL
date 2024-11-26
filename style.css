@@ -43,28 +43,34 @@ input {
     background-color: #edf2f4;
     color: #2b2d42;
     outline: none;
-    transition: border-color 0.3s;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 input:focus {
     border-color: #ef233c;
+    box-shadow: 0 0 5px #ef233c;
 }
 
 button {
-    background-color: #ef233c;
-    color: #edf2f4;
+    background-color: #ff6f61;
+    color: #fff;
     padding: 10px 20px;
     font-size: 1rem;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s;
+    transition: background-color 0.3s ease, transform 0.2s ease;
     margin: 5px;
 }
 
 button:hover {
-    background-color: #d90429;
+    background-color: #ff8870;
     transform: scale(1.05);
+}
+
+button:focus {
+    outline: 2px solid #ff6f61;
+    transform: scale(1.1);
 }
 
 .resultado {
@@ -100,5 +106,67 @@ img {
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+#ranking-container {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+}
+
+#ranking-container.ranking-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#gif img {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: all 0.5s ease;
+}
+
+#gif img.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Botones */
+button {
+    background-color: #ff6f61;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #ff8870;
+    transform: scale(1.05);
+}
+
+button:focus {
+    outline: 2px solid #ff6f61;
+    transform: scale(1.1);
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+        padding: 20px;
+        height: auto;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 600px;
+    }
+
+    button {
+        width: 100%;
+        margin: 10px 0;
     }
 }
