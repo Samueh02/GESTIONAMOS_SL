@@ -237,11 +237,11 @@ async function mostrarGif(esPositivo) {
     gifContainer.innerHTML = "<p>No se pudo cargar el GIF. Inténtalo más tarde.</p>";
   }
 }
+
+// Función cambiarTema
 function cambiarTema(tema) {
-    // Eliminar clases de tema existentes
     document.body.classList.remove("theme-claro", "theme-oscuro", "theme-personalizado");
 
-    // Añadir la clase del tema seleccionado
     if (tema === "claro") {
         document.body.classList.add("theme-claro");
     } else if (tema === "oscuro") {
@@ -257,7 +257,7 @@ function cambiarTema(tema) {
     localStorage.setItem("tema", tema);
 }
 
-// Exponer la función al ámbito global
+// Exponer funciones globales
 window.cambiarTema = cambiarTema;
 window.gestionar = gestionar;
 window.excusaExtrema = excusaExtrema;
