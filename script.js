@@ -92,7 +92,11 @@ function gestionar() {
 
   document.getElementById("resultado").innerText = `"${plan}" → ${respuesta}`;
   mostrarGif(esPositivo);
+
+  // Actualizar el ranking mostrado
+  mostrarRankingGlobal();
 }
+
 
 // Función para excusa extrema
 function excusaExtrema() {
