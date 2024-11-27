@@ -148,30 +148,6 @@ function procesarPalabras() {
 }
 
 
-// Mostrar las 5 palabras más relevantes en el gráfico
-// Mostrar las 5 palabras más relevantes en el gráfico principal
-function mostrarRankingGlobal() {
-  const palabrasRelevantes = procesarPalabras();
-  const rankingOrdenado = Object.entries(palabrasRelevantes)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 5); // Limitar a las 5 palabras más relevantes
-
-  const resultado = document.getElementById("ranking-container");
-  resultado.innerHTML = "<h3>Palabras más relevantes:</h3>";
-
-  if (rankingOrdenado.length === 0) {
-    resultado.innerHTML += "<p>No se han introducido planes todavía.</p>";
-  } else {
-    rankingOrdenado.forEach(([palabra, count], index) => {
-      resultado.innerHTML += `<p>${index + 1}. ${palabra} - ${count} veces</p>`;
-    });
-  }
-
-  actualizarGrafico(rankingOrdenado);
-}
-
-
-// Función para actualizar el gráfico con los datos limitados
 // Mostrar ranking de palabras relevantes
 function mostrarRankingGlobal() {
     const palabrasRelevantes = procesarPalabras();
