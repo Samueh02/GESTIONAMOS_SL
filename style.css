@@ -142,16 +142,19 @@ input:focus {
 .estadisticas-container {
     text-align: center;
     background-color: var(--color-container);
-    padding: 30px;
+    padding: 20px;
     border-radius: 15px;
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
     animation: fadeIn 1s ease;
     margin: 20px auto;
     max-width: 800px;
-    min-height: 70vh; /* Asegura que ocupa al menos el 70% de la altura de la pantalla */
+    width: 90%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-between; /* Asegura que los elementos se distribuyan */
+    min-height: 70vh; /* Para ocupar un espacio adecuado en la pantalla */
+    max-height: 100vh; /* Evita desbordamientos verticales */
+    overflow-y: hidden; /* Desactiva barras de desplazamiento */
 }
 
 /* Estilo del botón de volver */
@@ -178,8 +181,10 @@ input:focus {
 
 /* Gráfico */
 #rankingChart {
-    margin: 20px auto;
-    max-width: 100%; /* Ajusta el gráfico al tamaño del contenedor */
-    height: auto; /* Deja que el alto sea proporcional */
-    flex-shrink: 1; /* Se ajusta si hay espacio limitado */
+    display: block; /* Asegura que se muestra como un bloque */
+    margin: 20px auto; /* Centra el gráfico */
+    max-width: 100%; /* Ajusta el ancho al contenedor */
+    max-height: 400px; /* Asegura una altura máxima razonable */
+    width: 100%; /* Hace que el gráfico ocupe todo el ancho del contenedor */
+    height: auto; /* Proporcional al ancho */
 }
