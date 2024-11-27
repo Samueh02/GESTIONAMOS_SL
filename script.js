@@ -256,6 +256,12 @@ function cambiarTema(tema) {
     // Guardar el tema seleccionado
     localStorage.setItem("tema", tema);
 }
+document.getElementById("reload-btn").addEventListener("click", () => {
+    document.getElementById("loading").style.display = "block";
+    mostrarTodasLasPalabras().finally(() => {
+        document.getElementById("loading").style.display = "none";
+    });
+});
 
 // Exponer la función al ámbito global
 window.cambiarTema = cambiarTema;
