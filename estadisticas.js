@@ -104,10 +104,12 @@ function actualizarGraficoCompleto(rankingOrdenado) {
 
   const ctx = chartElement.getContext("2d");
 
-  if (window.rankingChart) {
+  // Verificar si el gráfico ya existe y destruirlo si es válido
+  if (window.rankingChart && typeof window.rankingChart.destroy === "function") {
     window.rankingChart.destroy();
   }
 
+  // Crear un nuevo gráfico
   window.rankingChart = new Chart(ctx, {
     type: "bar",
     data: {
