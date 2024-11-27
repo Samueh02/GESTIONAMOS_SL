@@ -152,19 +152,16 @@ input:focus {
     width: 90%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Asegura distribución entre gráfico y botón */
-    min-height: 70vh; /* Asegura que ocupa una buena proporción de la pantalla */
-    height: 100%; /* Ocupa todo el espacio disponible */
-    overflow: hidden;
+    justify-content: space-between; /* Ajusta los elementos dentro del contenedor */
+    height: 100%; /* Permite usar todo el espacio disponible */
 }
 
 /* Gráfico */
 #rankingChart {
-    display: block;
-    margin: 20px auto;
-    max-width: 100%;
-    height: auto;
-    flex-grow: 1; /* Permite que el gráfico crezca si hay espacio */
+    max-width: 100%; /* Asegura que no exceda el ancho del contenedor */
+    height: auto; /* Permite que la altura se ajuste automáticamente */
+    margin: 20px auto; /* Centra el gráfico */
+    flex-grow: 1; /* Permite que ocupe el espacio disponible */
 }
 
 /* Estilo del botón */
