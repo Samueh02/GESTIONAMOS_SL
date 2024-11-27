@@ -1,4 +1,5 @@
 /* General */
+/* General */
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
@@ -8,11 +9,15 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start; /* Cambiado de center a flex-start para permitir desplazamiento */
     min-height: 100vh;
+    height: auto; /* Asegura que el contenido determine la altura */
+    overflow-x: hidden; /* Evita scroll horizontal innecesario */
     transition: background-color 0.5s ease, color 0.5s ease;
-    overflow: hidden; /* Evita barras de desplazamiento innecesarias */
+    overflow-y: auto; /* Habilita desplazamiento vertical */
+
 }
+
 
 .container {
     text-align: center;
