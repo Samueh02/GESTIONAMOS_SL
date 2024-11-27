@@ -171,16 +171,47 @@ function mostrarRankingGlobal() {
 }
 
 // Función para actualizar el gráfico con los datos limitados
-function actualizarGrafico(rankingOrdenado) {
+// Mostrar ranking de palabras relevantes
+function mostrarRankingGlobal() {
+    const palabrasRelevantes = procesarPalabras();
+    const rankingOrdenado = Object.entries(palabrasRelevantes)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 5); // Limitar a las 5 palabras más relevantes
+
+    const resultado = document.getElementById("ranking-container");
+    resultado.innerHTML = "<h3>Palabras más relevantes:</h3>";
+
     if (rankingOrdenado.length === 0) {
+        resultado.innerHTML += "<p>No se han introducido planes todavía.</p>";
+    } else {
+        rankingOrdenado.forEach(([palabra, count], index) => {
+            resultado.innerHTML += `<p>${index + 1}. ${palabra} - ${count} veces</p>`;
+        });
+    }
+
+    resultado.classList.add("ranking-visible");
+
+    // Renderizar gráfico con los datos limitados a 5 palabras
+    renderizarGrafico(rankingOrdenado);
+}
+
+function renderizarGrafico(rankingOrdenado) {
+    // Verificar si hay datos para mostrar
+    if (!rankingOrdenado || rankingOrdenado.length === 0) {
         console.warn("No hay datos para mostrar en el gráfico.");
         return;
     }
 
+    const chartElement = document.getElementById("rankingChart");
+    if (!chartElement) {
+        console.error("El elemento canvas para el gráfico no se encuentra en el DOM.");
+        return;
+    }
+
+    const ctx = chartElement.getContext("2d");
+
     const labels = rankingOrdenado.map(([palabra]) => palabra);
     const data = rankingOrdenado.map(([_, count]) => count);
-
-    const ctx = document.getElementById("rankingChart").getContext("2d");
 
     // Destruir el gráfico previo si existe
     if (window.rankingChart) {
@@ -191,11 +222,11 @@ function actualizarGrafico(rankingOrdenado) {
     window.rankingChart = new Chart(ctx, {
         type: "bar",
         data: {
-            labels,
+            labels: labels,
             datasets: [
                 {
                     label: "Relevancia de Palabras",
-                    data,
+                    data: data,
                     backgroundColor: "rgba(75, 192, 192, 0.2)",
                     borderColor: "rgba(75, 192, 192, 1)",
                     borderWidth: 1,
@@ -214,38 +245,6 @@ function actualizarGrafico(rankingOrdenado) {
     });
 }
 
-
-
-function renderizarGrafico(palabrasRelevantes) {
-    const ctx = document.getElementById("rankingChart").getContext("2d");
-
-    // Procesar datos para el gráfico
-    const labels = Object.keys(palabrasRelevantes);
-    const data = Object.values(palabrasRelevantes);
-
-    // Crear el gráfico
-    new Chart(ctx, {
-        type: "bar",
-        data: {
-            labels: labels,
-            datasets: [{
-                label: "Relevancia de Palabras",
-                data: data,
-                backgroundColor: "rgba(75, 192, 192, 0.2)",
-                borderColor: "rgba(75, 192, 192, 1)",
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-}
 
 // Configurar la API Key de Giphy
 const GIPHY_API_KEY = "5Vq0fiANu7FZmDW1ntUNUTPanSbmHC1o";
