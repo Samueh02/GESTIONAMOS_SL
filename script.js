@@ -87,10 +87,10 @@ function gestionar() {
 
   const esPositivo = Math.random() > 0.5;
   const respuesta = esPositivo
-    ? ${nombre}, ${positivos[Math.floor(Math.random() * positivos.length)]}
-    : ${nombre}, ${negativos[Math.floor(Math.random() * negativos.length)]};
+    ? `${nombre}, ${positivos[Math.floor(Math.random() * positivos.length)]}`
+    : `${nombre}, ${negativos[Math.floor(Math.random() * negativos.length)]}`;
 
-  document.getElementById("resultado").innerText = "${plan}" → ${respuesta};
+  document.getElementById("resultado").innerText = `"${plan}" → ${respuesta}`;
   mostrarGif(esPositivo);
 
   // Actualizar el ranking mostrado
@@ -148,35 +148,10 @@ function procesarPalabras() {
 }
 
 
-// Mostrar las 5 palabras más relevantes en el gráfico
-function mostrarRankingGlobal() {
-    const palabrasRelevantes = procesarPalabras();
-    const rankingOrdenado = Object.entries(palabrasRelevantes)
-        .sort((a, b) => b[1] - a[1])
-        .slice(0, 5); // Limitar a las 5 palabras más relevantes
-
-    const resultado = document.getElementById("ranking-container");
-    resultado.innerHTML = "<h3>Palabras más relevantes:</h3>";
-
-    if (rankingOrdenado.length === 0) {
-        resultado.innerHTML += "<p>No se han introducido planes todavía.</p>";
-    } else {
-        rankingOrdenado.forEach(([palabra, count], index) => {
-            resultado.innerHTML += <p>${index + 1}. ${palabra} - ${count} veces</p>;
-        });
-    }
-
-    // Actualizar el gráfico con Chart.js
-    actualizarGrafico(rankingOrdenado);
-}
-
-// Función para actualizar el gráfico con los datos limitados
 // Mostrar ranking de palabras relevantes
 function mostrarRankingGlobal() {
     const palabrasRelevantes = procesarPalabras();
-    const rankingOrdenado = Object.entries(palabrasRelevantes)
-        .sort((a, b) => b[1] - a[1])
-        .slice(0, 5); // Limitar a las 5 palabras más relevantes
+    const rankingOrdenado = Object.entries(palabrasRelevantes).sort((a, b) => b[1] - a[1]);
 
     const resultado = document.getElementById("ranking-container");
     resultado.innerHTML = "<h3>Palabras más relevantes:</h3>";
@@ -185,73 +160,54 @@ function mostrarRankingGlobal() {
         resultado.innerHTML += "<p>No se han introducido planes todavía.</p>";
     } else {
         rankingOrdenado.forEach(([palabra, count], index) => {
-            resultado.innerHTML += <p>${index + 1}. ${palabra} - ${count} veces</p>;
+            resultado.innerHTML += `<p>${index + 1}. ${palabra} - ${count} veces</p>`;
         });
     }
 
     resultado.classList.add("ranking-visible");
 
-    // Renderizar gráfico con los datos limitados a 5 palabras
-    renderizarGrafico(rankingOrdenado);
+    // Renderizar gráfico con los datos
+    renderizarGrafico(palabrasRelevantes);
 }
 
-function renderizarGrafico(rankingOrdenado) {
-    // Verificar si hay datos para mostrar
-    if (!rankingOrdenado || rankingOrdenado.length === 0) {
-        console.warn("No hay datos para mostrar en el gráfico.");
-        return;
-    }
 
-    const chartElement = document.getElementById("rankingChart");
-    if (!chartElement) {
-        console.error("El elemento canvas para el gráfico no se encuentra en el DOM.");
-        return;
-    }
+function renderizarGrafico(palabrasRelevantes) {
+    const ctx = document.getElementById("rankingChart").getContext("2d");
 
-    const ctx = chartElement.getContext("2d");
+    // Procesar datos para el gráfico
+    const labels = Object.keys(palabrasRelevantes);
+    const data = Object.values(palabrasRelevantes);
 
-    const labels = rankingOrdenado.map(([palabra]) => palabra);
-    const data = rankingOrdenado.map(([_, count]) => count);
-
-    // Destruir el gráfico previo si existe
-    if (window.rankingChart) {
-        window.rankingChart.destroy();
-    }
-
-    // Crear un nuevo gráfico
-    window.rankingChart = new Chart(ctx, {
+    // Crear el gráfico
+    new Chart(ctx, {
         type: "bar",
         data: {
             labels: labels,
-            datasets: [
-                {
-                    label: "Relevancia de Palabras",
-                    data: data,
-                    backgroundColor: "rgba(75, 192, 192, 0.2)",
-                    borderColor: "rgba(75, 192, 192, 1)",
-                    borderWidth: 1,
-                },
-            ],
+            datasets: [{
+                label: "Relevancia de Palabras",
+                data: data,
+                backgroundColor: "rgba(75, 192, 192, 0.2)",
+                borderColor: "rgba(75, 192, 192, 1)",
+                borderWidth: 1
+            }]
         },
         options: {
             responsive: true,
-            maintainAspectRatio: false,
             scales: {
                 y: {
-                    beginAtZero: true,
-                },
-            },
-        },
+                    beginAtZero: true
+                }
+            }
+        }
     });
 }
-
 
 // Configurar la API Key de Giphy
 const GIPHY_API_KEY = "5Vq0fiANu7FZmDW1ntUNUTPanSbmHC1o";
 
 // Función para obtener un GIF aleatorio
 async function obtenerGifAleatorio(tag) {
-  const url = https://api.giphy.com/v1/gifs/random?api_key=${GIPHY_API_KEY}&tag=${tag}&rating=g;
+  const url = `https://api.giphy.com/v1/gifs/random?api_key=${GIPHY_API_KEY}&tag=${tag}&rating=g`;
 
   try {
     const response = await fetch(url);
@@ -271,7 +227,7 @@ async function mostrarGif(esPositivo) {
   const gifUrl = await obtenerGifAleatorio(tag);
 
   if (gifUrl) {
-    gifContainer.innerHTML = <img src="${gifUrl}" alt="Resultado">;
+    gifContainer.innerHTML = `<img src="${gifUrl}" alt="Resultado">`;
     const gifElement = gifContainer.querySelector("img");
 
     gifElement.onload = () => {
@@ -281,11 +237,11 @@ async function mostrarGif(esPositivo) {
     gifContainer.innerHTML = "<p>No se pudo cargar el GIF. Inténtalo más tarde.</p>";
   }
 }
-
-// Función cambiarTema
 function cambiarTema(tema) {
+    // Eliminar clases de tema existentes
     document.body.classList.remove("theme-claro", "theme-oscuro", "theme-personalizado");
 
+    // Añadir la clase del tema seleccionado
     if (tema === "claro") {
         document.body.classList.add("theme-claro");
     } else if (tema === "oscuro") {
@@ -301,16 +257,11 @@ function cambiarTema(tema) {
     localStorage.setItem("tema", tema);
 }
 
-// Exponer funciones globales
+// Exponer la función al ámbito global
 window.cambiarTema = cambiarTema;
 window.gestionar = gestionar;
 window.excusaExtrema = excusaExtrema;
 window.mostrarRankingGlobal = mostrarRankingGlobal;
-window.onload = function () {
-  cargarRankingDesdeFirebase(() => {
-    mostrarRankingGlobal();
-  });
-};
 window.borrarRanking = function () {
   rankingPlanes = {};
   guardarRankingEnFirebase(rankingPlanes);
