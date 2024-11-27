@@ -177,7 +177,8 @@ input:focus {
 /* Gráfico */
 #rankingChart {
     margin: 20px auto;
-    max-width: 90%;
-    height: 400px;
+    max-width: 100%; /* Asegura que el gráfico no exceda el ancho del contenedor */
+    height: 400px; /* Establece una altura fija para el gráfico */
 }
+
 
