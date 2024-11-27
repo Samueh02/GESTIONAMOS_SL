@@ -11,6 +11,7 @@ body {
     justify-content: center;
     min-height: 100vh;
     transition: background-color 0.5s ease, color 0.5s ease;
+    overflow: hidden; /* Evita barras de desplazamiento innecesarias */
 }
 
 .container {
@@ -151,13 +152,22 @@ input:focus {
     width: 90%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Asegura que los elementos se distribuyan */
-    min-height: 70vh; /* Para ocupar un espacio adecuado en la pantalla */
-    max-height: 100vh; /* Evita desbordamientos verticales */
-    overflow-y: hidden; /* Desactiva barras de desplazamiento */
+    justify-content: space-between; /* Asegura distribución entre gráfico y botón */
+    min-height: 70vh; /* Asegura que ocupa una buena proporción de la pantalla */
+    height: 100%; /* Ocupa todo el espacio disponible */
+    overflow: hidden;
 }
 
-/* Estilo del botón de volver */
+/* Gráfico */
+#rankingChart {
+    display: block;
+    margin: 20px auto;
+    max-width: 100%;
+    height: auto;
+    flex-grow: 1; /* Permite que el gráfico crezca si hay espacio */
+}
+
+/* Estilo del botón */
 .estadisticas-container button {
     margin-top: 20px;
     background-color: var(--color-boton);
@@ -168,6 +178,7 @@ input:focus {
     cursor: pointer;
     font-size: 1rem;
     transition: background-color 0.3s ease, transform 0.2s ease;
+    align-self: center; /* Asegura que esté centrado */
 }
 
 .estadisticas-container button:hover {
@@ -179,12 +190,4 @@ input:focus {
     outline: 2px solid var(--color-boton-hover);
 }
 
-/* Gráfico */
-#rankingChart {
-    display: block; /* Asegura que se muestra como un bloque */
-    margin: 20px auto; /* Centra el gráfico */
-    max-width: 100%; /* Ajusta el ancho al contenedor */
-    max-height: 400px; /* Asegura una altura máxima razonable */
-    width: 100%; /* Hace que el gráfico ocupe todo el ancho del contenedor */
-    height: auto; /* Proporcional al ancho */
-}
+
