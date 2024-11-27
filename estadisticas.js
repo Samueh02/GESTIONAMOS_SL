@@ -20,6 +20,12 @@ const database = getDatabase(app);
 // Variable global para almacenar el gráfico
 let rankingChart;
 
+// Función para mostrar/ocultar el mensaje de carga
+function mostrarCargando(mostrar) {
+    const loadingElement = document.getElementById("loading");
+    loadingElement.style.display = mostrar ? "block" : "none";
+}
+
 // Función para cargar los datos desde Firebase
 function cargarDatosDesdeFirebase() {
     const dbRef = ref(database, "rankingPlanes");
@@ -35,6 +41,7 @@ function cargarDatosDesdeFirebase() {
         })
         .catch((error) => {
             console.error("Error al cargar datos desde Firebase:", error);
+            document.getElementById("ranking-container").innerHTML = "<p>Error al cargar datos. Inténtalo más tarde.</p>";
             return {};
         });
 }
@@ -42,24 +49,24 @@ function cargarDatosDesdeFirebase() {
 // Función para procesar las palabras clave
 function procesarPalabras(rankingPlanes) {
     const palabrasRelevantes = {};
-    const palabrasIrrelevantes = [
-        "el", "la", "los", "las", "un", "unos", "una", "unas", // Artículos
-        "a", "al", "ante", "bajo", "cabe", "con", "contra", "de", "del", "desde", "en", // Preposiciones
+    const palabrasIrrelevantes = new Set([
+        "el", "la", "los", "las", "un", "unos", "una", "unas",
+        "a", "al", "ante", "bajo", "cabe", "con", "contra", "de", "del", "desde", "en",
         "entre", "hacia", "hasta", "para", "por", "según", "sin", "so", "sobre", "tras",
-        "y", "e", "ni", "que", "o", "u", "pero", "mas", "sino", "aunque", // Conjunciones
-        "mi", "tu", "su", "nuestro", "nuestra", "nuestros", "nuestras", // Pronombres posesivos
+        "y", "e", "ni", "que", "o", "u", "pero", "mas", "sino", "aunque",
+        "mi", "tu", "su", "nuestro", "nuestra", "nuestros", "nuestras",
         "vuestro", "vuestra", "vuestros", "vuestras", "este", "estos", "esta", "estas",
-        "ese", "esos", "esa", "esas", "aquel", "aquellos", "aquella", "aquellas", // Demostrativos
-        "yo", "tú", "él", "ella", "nosotros", "nosotras", "vosotros", "vosotras", "ellos", "ellas", // Personales
-        "me", "te", "se", "nos", "os", "lo", "la", "los", "las", // Reflexivos y objetos
-        "hay", "ser", "es", "soy", "somos", "son", "era", "eran", "fue", "fueron" // Verbos comunes
-    ];
+        "ese", "esos", "esa", "esas", "aquel", "aquellos", "aquella", "aquellas",
+        "yo", "tú", "él", "ella", "nosotros", "nosotras", "vosotros", "vosotras", "ellos", "ellas",
+        "me", "te", "se", "nos", "os", "lo", "la", "los", "las", "hay", "ser", "es", "soy", "somos",
+        "son", "era", "eran", "fue", "fueron"
+    ]);
 
     Object.keys(rankingPlanes).forEach((plan) => {
         const palabras = plan.split(/\s+/);
         palabras.forEach((palabra) => {
             const palabraLimpia = palabra.toLowerCase().replace(/[^a-záéíóúñ]/g, "");
-            if (!palabrasIrrelevantes.includes(palabraLimpia) && palabraLimpia) {
+            if (!palabrasIrrelevantes.has(palabraLimpia) && palabraLimpia) {
                 palabrasRelevantes[palabraLimpia] =
                     (palabrasRelevantes[palabraLimpia] || 0) + rankingPlanes[plan];
             }
@@ -71,22 +78,27 @@ function procesarPalabras(rankingPlanes) {
 
 // Mostrar todas las palabras relevantes en el gráfico
 function mostrarTodasLasPalabras() {
+    mostrarCargando(true);
     cargarDatosDesdeFirebase().then((rankingPlanes) => {
         const palabrasRelevantes = procesarPalabras(rankingPlanes);
         const rankingOrdenado = Object.entries(palabrasRelevantes).sort((a, b) => b[1] - a[1]);
 
         const resultado = document.getElementById("ranking-container");
-        resultado.innerHTML = "<h3>Palabras más relevantes (todas):</h3>";
+        let htmlContent = "<h3>Palabras más relevantes (todas):</h3>";
 
         if (rankingOrdenado.length === 0) {
-            resultado.innerHTML += "<p>No se han introducido planes todavía.</p>";
+            htmlContent += "<p>No se han introducido planes todavía.</p>";
         } else {
-            rankingOrdenado.forEach(([palabra, count], index) => {
-                resultado.innerHTML += `<p>${index + 1}. ${palabra} - ${count} veces</p>`;
-            });
+            htmlContent += rankingOrdenado.map(([palabra, count], index) =>
+                `<p>${index + 1}. ${palabra} - ${count} veces</p>`
+            ).join("");
         }
+        resultado.innerHTML = htmlContent;
 
         actualizarGraficoCompleto(rankingOrdenado);
+        mostrarCargando(false);
+    }).catch(() => {
+        mostrarCargando(false);
     });
 }
 
@@ -102,13 +114,11 @@ function actualizarGraficoCompleto(rankingOrdenado) {
 
     const ctx = document.getElementById("rankingChart").getContext("2d");
 
-    // Si ya existe un gráfico, destrúyelo antes de crear uno nuevo
-    if (window.rankingChart) {
-        window.rankingChart.destroy();
+    if (rankingChart) {
+        rankingChart.destroy();
     }
 
-    // Crear un nuevo gráfico
-    window.rankingChart = new Chart(ctx, {
+    rankingChart = new Chart(ctx, {
         type: "bar",
         data: {
             labels,
@@ -123,37 +133,34 @@ function actualizarGraficoCompleto(rankingOrdenado) {
             ],
         },
         options: {
-            responsive: true, // Hace que el gráfico sea responsive
-            maintainAspectRatio: true, // Ajusta la proporción del gráfico
+            responsive: true,
+            maintainAspectRatio: false,
             plugins: {
                 legend: {
-                    position: "top", // Ajusta la posición de la leyenda
-                },
-            },
-            layout: {
-                padding: {
-                    top: 20, // Espacio superior
-                    bottom: 20, // Espacio inferior
+                    position: "top",
                 },
             },
             scales: {
                 x: {
                     ticks: {
-                        maxRotation: 45, // Evita que las etiquetas se sobrepongan
+                        maxRotation: 45,
                         minRotation: 0,
                     },
                 },
                 y: {
-                    beginAtZero: true, // Comienza desde cero
+                    beginAtZero: true,
                 },
             },
         },
     });
 }
 
-
-// Llamar a la función para mostrar los datos
-document.addEventListener("DOMContentLoaded", () => {
-    mostrarTodasLasPalabras(); // Llamar a la función para cargar y mostrar el gráfico
+// Configurar el botón de recarga
+document.getElementById("reload-btn").addEventListener("click", () => {
+    mostrarTodasLasPalabras();
 });
 
+// Cargar los datos al cargar la página
+document.addEventListener("DOMContentLoaded", () => {
+    mostrarTodasLasPalabras();
+});
