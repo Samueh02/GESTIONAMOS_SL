@@ -17,7 +17,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
-// Función para cargar los datos desde Firebase
+// Función para cargar datos desde Firebase
 function cargarDatosDesdeFirebase() {
   const dbRef = ref(database, "rankingPlanes");
 
@@ -36,20 +36,19 @@ function cargarDatosDesdeFirebase() {
     });
 }
 
-// Función para procesar las palabras clave
+// Función para procesar palabras
 function procesarPalabras(rankingPlanes) {
   const palabrasRelevantes = {};
   const palabrasIrrelevantes = [
-    "el", "la", "los", "las", "un", "unos", "una", "unas", // Artículos
-    "a", "al", "ante", "bajo", "cabe", "con", "contra", "de", "del", "desde", "en", // Preposiciones
-    "entre", "hacia", "hasta", "para", "por", "según", "sin", "so", "sobre", "tras",
-    "y", "e", "ni", "que", "o", "u", "pero", "mas", "sino", "aunque", // Conjunciones
-    "mi", "tu", "su", "nuestro", "nuestra", "nuestros", "nuestras", // Pronombres posesivos
-    "vuestro", "vuestra", "vuestros", "vuestras", "este", "estos", "esta", "estas", 
-    "ese", "esos", "esa", "esas", "aquel", "aquellos", "aquella", "aquellas", // Demostrativos
-    "yo", "tú", "él", "ella", "nosotros", "nosotras", "vosotros", "vosotras", "ellos", "ellas", // Personales
-    "me", "te", "se", "nos", "os", "lo", "la", "los", "las", // Reflexivos y objetos
-    "hay", "ser", "es", "soy", "somos", "son", "era", "eran", "fue", "fueron" // Verbos comunes
+    "el", "la", "los", "las", "un", "unos", "una", "unas", "a", "al", "ante", "bajo", "cabe",
+    "con", "contra", "de", "del", "desde", "en", "entre", "hacia", "hasta", "para", "por",
+    "según", "sin", "so", "sobre", "tras", "y", "e", "ni", "que", "o", "u", "pero", "mas",
+    "sino", "aunque", "mi", "tu", "su", "nuestro", "nuestra", "nuestros", "nuestras",
+    "vuestro", "vuestra", "vuestros", "vuestras", "este", "estos", "esta", "estas", "ese",
+    "esos", "esa", "esas", "aquel", "aquellos", "aquella", "aquellas", "yo", "tú", "él",
+    "ella", "nosotros", "nosotras", "vosotros", "vosotras", "ellos", "ellas", "me", "te",
+    "se", "nos", "os", "lo", "la", "los", "las", "hay", "ser", "es", "soy", "somos", "son",
+    "era", "eran", "fue", "fueron",
   ];
 
   Object.keys(rankingPlanes).forEach((plan) => {
@@ -66,8 +65,8 @@ function procesarPalabras(rankingPlanes) {
   return palabrasRelevantes;
 }
 
-// Mostrar todas las palabras relevantes en el gráfico
-function mostrarTodasLasPalabras() {
+// Mostrar palabras y gráfico completo
+function mostrarRankingCompleto() {
   cargarDatosDesdeFirebase().then((rankingPlanes) => {
     const palabrasRelevantes = procesarPalabras(rankingPlanes);
     const rankingOrdenado = Object.entries(palabrasRelevantes).sort((a, b) => b[1] - a[1]);
@@ -87,7 +86,7 @@ function mostrarTodasLasPalabras() {
   });
 }
 
-// Función para actualizar el gráfico completo
+// Función para actualizar el gráfico
 function actualizarGraficoCompleto(rankingOrdenado) {
   if (rankingOrdenado.length === 0) {
     console.warn("No hay datos para mostrar en el gráfico.");
@@ -99,8 +98,11 @@ function actualizarGraficoCompleto(rankingOrdenado) {
 
   const ctx = document.getElementById("rankingChart").getContext("2d");
 
-  // Crear un nuevo gráfico
-  new Chart(ctx, {
+  if (window.rankingChart) {
+    window.rankingChart.destroy();
+  }
+
+  window.rankingChart = new Chart(ctx, {
     type: "bar",
     data: {
       labels,
@@ -126,5 +128,5 @@ function actualizarGraficoCompleto(rankingOrdenado) {
   });
 }
 
-// Llamar a la función para mostrar los datos
-mostrarTodasLasPalabras();
+// Llamar a la función inicial
+mostrarRankingCompleto();
