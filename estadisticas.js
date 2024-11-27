@@ -92,33 +92,30 @@ function mostrarTodasLasPalabras() {
 
 // Función para actualizar el gráfico completo
 function actualizarGraficoCompleto(rankingOrdenado) {
-    if (!rankingOrdenado || rankingOrdenado.length === 0) {
+    if (rankingOrdenado.length === 0) {
         console.warn("No hay datos para mostrar en el gráfico.");
         return;
     }
 
-    const chartElement = document.getElementById("rankingChart");
-    if (!chartElement) {
-        console.error("El elemento canvas para el gráfico no se encuentra en el DOM.");
-        return;
-    }
+    const labels = rankingOrdenado.map(([palabra]) => palabra);
+    const data = rankingOrdenado.map(([_, count]) => count);
 
-    const ctx = chartElement.getContext("2d");
+    const ctx = document.getElementById("rankingChart").getContext("2d");
 
-    // Si existe un gráfico previo, destrúyelo correctamente
-    if (window.rankingChart instanceof Chart) {
+    // Si ya existe un gráfico, destrúyelo antes de crear uno nuevo
+    if (window.rankingChart) {
         window.rankingChart.destroy();
     }
 
-    // Crear el gráfico
+    // Crear un nuevo gráfico
     window.rankingChart = new Chart(ctx, {
         type: "bar",
         data: {
-            labels: rankingOrdenado.map(([palabra]) => palabra),
+            labels,
             datasets: [
                 {
                     label: "Relevancia de Palabras",
-                    data: rankingOrdenado.map(([_, count]) => count),
+                    data,
                     backgroundColor: "rgba(153, 102, 255, 0.2)",
                     borderColor: "rgba(153, 102, 255, 1)",
                     borderWidth: 1,
@@ -126,8 +123,13 @@ function actualizarGraficoCompleto(rankingOrdenado) {
             ],
         },
         options: {
-            responsive: true,
-            maintainAspectRatio: false,
+            responsive: true, // Hace que el gráfico sea responsive
+            maintainAspectRatio: false, // Permite que se ajuste completamente al contenedor
+            plugins: {
+                legend: {
+                    position: "top", // Ajusta la posición de la leyenda
+                },
+            },
             scales: {
                 y: {
                     beginAtZero: true,
