@@ -92,30 +92,33 @@ function mostrarTodasLasPalabras() {
 
 // Función para actualizar el gráfico completo
 function actualizarGraficoCompleto(rankingOrdenado) {
-    if (rankingOrdenado.length === 0) {
+    if (!rankingOrdenado || rankingOrdenado.length === 0) {
         console.warn("No hay datos para mostrar en el gráfico.");
         return;
     }
 
-    const labels = rankingOrdenado.map(([palabra]) => palabra);
-    const data = rankingOrdenado.map(([_, count]) => count);
+    const chartElement = document.getElementById("rankingChart");
+    if (!chartElement) {
+        console.error("El elemento canvas para el gráfico no se encuentra en el DOM.");
+        return;
+    }
 
-    const ctx = document.getElementById("rankingChart").getContext("2d");
+    const ctx = chartElement.getContext("2d");
 
-    // Destruir el gráfico previo si existe
-    if (window.rankingChart) {
+    // Si existe un gráfico previo, destrúyelo correctamente
+    if (window.rankingChart instanceof Chart) {
         window.rankingChart.destroy();
     }
 
-    // Crear un nuevo gráfico
+    // Crear el gráfico
     window.rankingChart = new Chart(ctx, {
         type: "bar",
         data: {
-            labels: labels,
+            labels: rankingOrdenado.map(([palabra]) => palabra),
             datasets: [
                 {
                     label: "Relevancia de Palabras",
-                    data: data,
+                    data: rankingOrdenado.map(([_, count]) => count),
                     backgroundColor: "rgba(153, 102, 255, 0.2)",
                     borderColor: "rgba(153, 102, 255, 1)",
                     borderWidth: 1,
@@ -124,7 +127,7 @@ function actualizarGraficoCompleto(rankingOrdenado) {
         },
         options: {
             responsive: true,
-            maintainAspectRatio: false, // Importante para evitar desbordamiento
+            maintainAspectRatio: false,
             scales: {
                 y: {
                     beginAtZero: true,
