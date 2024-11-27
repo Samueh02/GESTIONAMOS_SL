@@ -139,4 +139,7 @@ function actualizarGraficoCompleto(rankingOrdenado) {
 
 
 // Llamar a la función para mostrar los datos
-mostrarTodasLasPalabras();
+document.addEventListener("DOMContentLoaded", () => {
+    mostrarTodasLasPalabras(); // Llamar a la función para cargar y mostrar el gráfico
+});
+
