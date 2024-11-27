@@ -159,10 +159,11 @@ input:focus {
 
 /* Gráfico */
 #rankingChart {
-    width: 100%; /* Ajusta al 100% del contenedor */
-    height: 50vh; /* El gráfico ocupará la mitad del alto visible */
-    max-height: 500px; /* Limita el tamaño máximo para evitar desbordes */
-    margin: 0 auto; /* Centra el gráfico */
+    width: 90vw; /* Ocupa el 90% del ancho de la ventana */
+    height: 50vh; /* Ocupa el 50% del alto de la ventana */
+    max-width: 800px; /* Limita el ancho máximo */
+    max-height: 400px; /* Limita el alto máximo */
+    margin: 0 auto;
 }
 
 
