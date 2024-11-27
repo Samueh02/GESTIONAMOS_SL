@@ -87,10 +87,10 @@ function gestionar() {
 
   const esPositivo = Math.random() > 0.5;
   const respuesta = esPositivo
-    ? `${nombre}, ${positivos[Math.floor(Math.random() * positivos.length)]}`
-    : `${nombre}, ${negativos[Math.floor(Math.random() * negativos.length)]}`;
+    ? ${nombre}, ${positivos[Math.floor(Math.random() * positivos.length)]}
+    : ${nombre}, ${negativos[Math.floor(Math.random() * negativos.length)]};
 
-  document.getElementById("resultado").innerText = `"${plan}" → ${respuesta}`;
+  document.getElementById("resultado").innerText = "${plan}" → ${respuesta};
   mostrarGif(esPositivo);
 
   // Actualizar el ranking mostrado
@@ -148,6 +148,29 @@ function procesarPalabras() {
 }
 
 
+// Mostrar las 5 palabras más relevantes en el gráfico
+function mostrarRankingGlobal() {
+    const palabrasRelevantes = procesarPalabras();
+    const rankingOrdenado = Object.entries(palabrasRelevantes)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 5); // Limitar a las 5 palabras más relevantes
+
+    const resultado = document.getElementById("ranking-container");
+    resultado.innerHTML = "<h3>Palabras más relevantes:</h3>";
+
+    if (rankingOrdenado.length === 0) {
+        resultado.innerHTML += "<p>No se han introducido planes todavía.</p>";
+    } else {
+        rankingOrdenado.forEach(([palabra, count], index) => {
+            resultado.innerHTML += <p>${index + 1}. ${palabra} - ${count} veces</p>;
+        });
+    }
+
+    // Actualizar el gráfico con Chart.js
+    actualizarGrafico(rankingOrdenado);
+}
+
+// Función para actualizar el gráfico con los datos limitados
 // Mostrar ranking de palabras relevantes
 function mostrarRankingGlobal() {
     const palabrasRelevantes = procesarPalabras();
@@ -162,7 +185,7 @@ function mostrarRankingGlobal() {
         resultado.innerHTML += "<p>No se han introducido planes todavía.</p>";
     } else {
         rankingOrdenado.forEach(([palabra, count], index) => {
-            resultado.innerHTML += `<p>${index + 1}. ${palabra} - ${count} veces</p>`;
+            resultado.innerHTML += <p>${index + 1}. ${palabra} - ${count} veces</p>;
         });
     }
 
@@ -228,7 +251,7 @@ const GIPHY_API_KEY = "5Vq0fiANu7FZmDW1ntUNUTPanSbmHC1o";
 
 // Función para obtener un GIF aleatorio
 async function obtenerGifAleatorio(tag) {
-  const url = `https://api.giphy.com/v1/gifs/random?api_key=${GIPHY_API_KEY}&tag=${tag}&rating=g`;
+  const url = https://api.giphy.com/v1/gifs/random?api_key=${GIPHY_API_KEY}&tag=${tag}&rating=g;
 
   try {
     const response = await fetch(url);
@@ -248,7 +271,7 @@ async function mostrarGif(esPositivo) {
   const gifUrl = await obtenerGifAleatorio(tag);
 
   if (gifUrl) {
-    gifContainer.innerHTML = `<img src="${gifUrl}" alt="Resultado">`;
+    gifContainer.innerHTML = <img src="${gifUrl}" alt="Resultado">;
     const gifElement = gifContainer.querySelector("img");
 
     gifElement.onload = () => {
