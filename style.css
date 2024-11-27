@@ -146,8 +146,11 @@ input:focus {
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
     animation: fadeIn 1s ease;
     margin: 20px auto;
-    max-width: 800px;
+    max-width: 800px; /* Limita el ancho del contenedor */
+    height: 600px; /* Establece un alto fijo */
+    overflow-y: auto; /* Habilita el desplazamiento si el contenido excede el tamaño */
 }
+
 
 /* Estilo del botón de volver */
 .estadisticas-container button {
