@@ -137,3 +137,43 @@ input:focus {
         margin: 10px 0;
     }
 }
+/* Contenedor principal para estadísticas */
+.estadisticas-container {
+    text-align: center;
+    background-color: var(--color-container);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 1s ease;
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+/* Estilo del botón de volver */
+.estadisticas-container button {
+    margin-top: 20px;
+    background-color: var(--color-boton);
+    color: var(--color-texto);
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.estadisticas-container button:hover {
+    background-color: var(--color-boton-hover);
+    transform: scale(1.05);
+}
+
+.estadisticas-container button:focus {
+    outline: 2px solid var(--color-boton-hover);
+}
+
+/* Gráfico */
+#rankingChart {
+    margin: 20px auto;
+    max-width: 90%;
+    height: 400px;
+}
