@@ -96,7 +96,13 @@ function actualizarGraficoCompleto(rankingOrdenado) {
   const labels = rankingOrdenado.map(([palabra]) => palabra);
   const data = rankingOrdenado.map(([_, count]) => count);
 
-  const ctx = document.getElementById("rankingChart").getContext("2d");
+  const chartElement = document.getElementById("rankingChart");
+  if (!chartElement) {
+    console.error("El elemento canvas para el gráfico no se encuentra en el DOM.");
+    return;
+  }
+
+  const ctx = chartElement.getContext("2d");
 
   if (window.rankingChart) {
     window.rankingChart.destroy();
