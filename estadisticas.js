@@ -114,10 +114,12 @@ function actualizarGraficoCompleto(rankingOrdenado) {
 
     const ctx = document.getElementById("rankingChart").getContext("2d");
 
+    // Destruir la instancia anterior del gráfico si existe
     if (rankingChart) {
         rankingChart.destroy();
     }
 
+    // Crear un nuevo gráfico
     rankingChart = new Chart(ctx, {
         type: "bar",
         data: {
@@ -134,7 +136,7 @@ function actualizarGraficoCompleto(rankingOrdenado) {
         },
         options: {
             responsive: true,
-            maintainAspectRatio: false,
+            maintainAspectRatio: false, // Permitir flexibilidad para pantallas pequeñas
             plugins: {
                 legend: {
                     position: "top",
