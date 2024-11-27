@@ -6,16 +6,21 @@
     <title>Estadísticas Completas</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <!-- Asegúrate de incluir Chart.js correctamente -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-     <div class="estadisticas-container">
+    <!-- Contenedor de estadísticas -->
+    <div class="estadisticas-container">
         <h1>Estadísticas Completas</h1>
         <div id="ranking-container"></div>
+        <!-- Lienzo para el gráfico -->
         <canvas id="rankingChart" width="400" height="200"></canvas>
+        <!-- Botón para volver a la página principal -->
         <button onclick="window.location.href='index.html'">Volver</button>
     </div>
 
+    <!-- Importar el script de estadísticas -->
     <script type="module" src="estadisticas.js"></script>
 </body>
 </html>
