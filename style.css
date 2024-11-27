@@ -2,13 +2,13 @@ body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #2b2d42;
-    color: #edf2f4;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    transition: background-color 0.5s ease;
+    min-height: 100vh;
+    transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 .container {
@@ -267,4 +267,90 @@ button:hover {
     #rankingChart {
         max-width: 100%;
     }
+}
+.estadisticas-container {
+    text-align: center;
+    background-color: var(--color-container);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 800px;
+    animation: fadeIn 1s ease;
+}
+.estadisticas-container h1 {
+    color: var(--color-texto);
+    margin-bottom: 20px;
+    font-size: 2rem;
+    font-weight: 600;
+}
+#ranking-container {
+    margin-top: 20px;
+    text-align: left;
+    background-color: #edf2f4;
+    color: #2b2d42;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-height: 300px;
+    overflow-y: auto;
+    transition: all 0.5s ease;
+}
+
+#ranking-container p {
+    margin: 5px 0;
+    font-size: 1rem;
+}
+
+#ranking-container.ranking-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+canvas {
+    margin: 20px auto;
+    max-width: 100%;
+    display: block;
+}
+
+button {
+    background-color: var(--color-boton);
+    color: var(--color-texto);
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: var(--color-boton-hover);
+    transform: scale(1.05);
+}
+
+button:focus {
+    outline: none;
+    transform: scale(1.1);
+}
+
+button:focus-visible {
+    outline: 2px solid var(--color-boton);
+}
+
+@media (max-width: 768px) {
+    .estadisticas-container {
+        padding: 20px;
+        width: 100%;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    #ranking-container {
+        max-height: 200px;
+    }
+
 }
