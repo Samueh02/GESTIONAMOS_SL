@@ -172,6 +172,11 @@ function mostrarRankingGlobal() {
 
 // Función para actualizar el gráfico con los datos limitados
 function actualizarGrafico(rankingOrdenado) {
+    if (rankingOrdenado.length === 0) {
+        console.warn("No hay datos para mostrar en el gráfico.");
+        return;
+    }
+
     const labels = rankingOrdenado.map(([palabra]) => palabra);
     const data = rankingOrdenado.map(([_, count]) => count);
 
@@ -302,6 +307,11 @@ window.cambiarTema = cambiarTema;
 window.gestionar = gestionar;
 window.excusaExtrema = excusaExtrema;
 window.mostrarRankingGlobal = mostrarRankingGlobal;
+window.onload = function () {
+  cargarRankingDesdeFirebase(() => {
+    mostrarRankingGlobal();
+  });
+};
 window.borrarRanking = function () {
   rankingPlanes = {};
   guardarRankingEnFirebase(rankingPlanes);
