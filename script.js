@@ -148,10 +148,12 @@ function procesarPalabras() {
 }
 
 
-// Mostrar ranking de palabras relevantes
+// Mostrar las 5 palabras más relevantes en el gráfico
 function mostrarRankingGlobal() {
     const palabrasRelevantes = procesarPalabras();
-    const rankingOrdenado = Object.entries(palabrasRelevantes).sort((a, b) => b[1] - a[1]);
+    const rankingOrdenado = Object.entries(palabrasRelevantes)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 5); // Limitar a las 5 palabras más relevantes
 
     const resultado = document.getElementById("ranking-container");
     resultado.innerHTML = "<h3>Palabras más relevantes:</h3>";
@@ -164,11 +166,49 @@ function mostrarRankingGlobal() {
         });
     }
 
-    resultado.classList.add("ranking-visible");
-
-    // Renderizar gráfico con los datos
-    renderizarGrafico(palabrasRelevantes);
+    // Actualizar el gráfico con Chart.js
+    actualizarGrafico(rankingOrdenado);
 }
+
+// Función para actualizar el gráfico con los datos limitados
+function actualizarGrafico(rankingOrdenado) {
+    const labels = rankingOrdenado.map(([palabra]) => palabra);
+    const data = rankingOrdenado.map(([_, count]) => count);
+
+    const ctx = document.getElementById("rankingChart").getContext("2d");
+
+    // Destruir el gráfico previo si existe
+    if (window.rankingChart) {
+        window.rankingChart.destroy();
+    }
+
+    // Crear un nuevo gráfico
+    window.rankingChart = new Chart(ctx, {
+        type: "bar",
+        data: {
+            labels,
+            datasets: [
+                {
+                    label: "Relevancia de Palabras",
+                    data,
+                    backgroundColor: "rgba(75, 192, 192, 0.2)",
+                    borderColor: "rgba(75, 192, 192, 1)",
+                    borderWidth: 1,
+                },
+            ],
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                },
+            },
+        },
+    });
+}
+
 
 
 function renderizarGrafico(palabrasRelevantes) {
