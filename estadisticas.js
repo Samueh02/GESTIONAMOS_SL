@@ -124,15 +124,27 @@ function actualizarGraficoCompleto(rankingOrdenado) {
         },
         options: {
             responsive: true, // Hace que el gráfico sea responsive
-            maintainAspectRatio: false, // Permite que se ajuste completamente al contenedor
+            maintainAspectRatio: true, // Ajusta la proporción del gráfico
             plugins: {
                 legend: {
                     position: "top", // Ajusta la posición de la leyenda
                 },
             },
+            layout: {
+                padding: {
+                    top: 20, // Espacio superior
+                    bottom: 20, // Espacio inferior
+                },
+            },
             scales: {
+                x: {
+                    ticks: {
+                        maxRotation: 45, // Evita que las etiquetas se sobrepongan
+                        minRotation: 0,
+                    },
+                },
                 y: {
-                    beginAtZero: true,
+                    beginAtZero: true, // Comienza desde cero
                 },
             },
         },
