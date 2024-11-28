@@ -170,6 +170,7 @@ function mostrarRankingGlobal() {
     renderizarGrafico(palabrasRelevantes);
 }
 
+let rankingChart; // Variable global para almacenar la instancia del gráfico
 
 function renderizarGrafico(palabrasRelevantes) {
     const ctx = document.getElementById("rankingChart").getContext("2d");
@@ -181,8 +182,13 @@ function renderizarGrafico(palabrasRelevantes) {
     const labels = top4.map(([palabra]) => palabra);
     const data = top4.map(([_, count]) => count);
 
-    // Crear el gráfico
-    new Chart(ctx, {
+    // Destruir el gráfico anterior si existe
+    if (rankingChart) {
+        rankingChart.destroy();
+    }
+
+    // Crear un nuevo gráfico
+    rankingChart = new Chart(ctx, {
         type: "bar",
         data: {
             labels: labels,
@@ -204,6 +210,7 @@ function renderizarGrafico(palabrasRelevantes) {
         }
     });
 }
+
 
 // Configurar la API Key de Giphy
 const GIPHY_API_KEY = "5Vq0fiANu7FZmDW1ntUNUTPanSbmHC1o";
