@@ -110,8 +110,9 @@ function actualizarGraficoCompleto(rankingOrdenado) {
     }
 
     // Reiniciar el canvas
-    const canvasContainer = document.getElementById("rankingChart").parentNode;
-    document.getElementById("rankingChart").remove();
+    const canvasContainer = document.querySelector(".estadisticas-container");
+    const oldCanvas = document.getElementById("rankingChart");
+    if (oldCanvas) oldCanvas.remove();
 
     const newCanvas = document.createElement("canvas");
     newCanvas.id = "rankingChart";
@@ -150,7 +151,6 @@ function actualizarGraficoCompleto(rankingOrdenado) {
     });
 }
 
-
 // Configurar el botón de recarga
 document.getElementById("reload-btn").addEventListener("click", () => {
     mostrarTodasLasPalabras();
@@ -159,8 +159,7 @@ document.getElementById("reload-btn").addEventListener("click", () => {
 // Cargar los datos al cargar la página
 document.addEventListener("DOMContentLoaded", () => {
     if (!window.dataLoaded) {
-        window.dataLoaded = true; // Asegurarte de que solo se cargue una vez
+        window.dataLoaded = true; // Asegúrate de que solo se cargue una vez
         mostrarTodasLasPalabras();
     }
 });
-
