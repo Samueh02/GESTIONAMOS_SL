@@ -109,20 +109,16 @@ function actualizarGraficoCompleto(rankingOrdenado) {
         return;
     }
 
-    // Obtener el contenedor del canvas
+    // Reiniciar el canvas
     const canvasContainer = document.getElementById("rankingChart").parentNode;
-
-    // Eliminar el canvas actual
     document.getElementById("rankingChart").remove();
 
-    // Crear un nuevo canvas
     const newCanvas = document.createElement("canvas");
     newCanvas.id = "rankingChart";
     canvasContainer.appendChild(newCanvas);
 
     const ctx = newCanvas.getContext("2d");
 
-    // Crear un nuevo gráfico
     rankingChart = new Chart(ctx, {
         type: "bar",
         data: {
@@ -131,8 +127,8 @@ function actualizarGraficoCompleto(rankingOrdenado) {
                 {
                     label: "Relevancia de Palabras",
                     data: rankingOrdenado.map(([_, count]) => count),
-                    backgroundColor: "rgba(153, 102, 255, 0.2)",
-                    borderColor: "rgba(153, 102, 255, 1)",
+                    backgroundColor: "rgba(75, 192, 192, 0.2)",
+                    borderColor: "rgba(75, 192, 192, 1)",
                     borderWidth: 1,
                 },
             ],
@@ -146,12 +142,6 @@ function actualizarGraficoCompleto(rankingOrdenado) {
                 },
             },
             scales: {
-                x: {
-                    ticks: {
-                        maxRotation: 45,
-                        minRotation: 0,
-                    },
-                },
                 y: {
                     beginAtZero: true,
                 },
@@ -159,6 +149,7 @@ function actualizarGraficoCompleto(rankingOrdenado) {
         },
     });
 }
+
 
 // Configurar el botón de recarga
 document.getElementById("reload-btn").addEventListener("click", () => {
