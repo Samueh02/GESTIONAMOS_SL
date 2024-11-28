@@ -62,9 +62,9 @@ body {
 
 /* Gráfico */
 canvas {
-    margin: 20px auto;
-    max-width: 100%;
     display: block;
+    max-width: 100%;
+    height: 100%;
 }
 
 /* Botones */
@@ -183,6 +183,7 @@ button:focus-visible {
     position: relative;
     width: 100%;
     max-width: 800px;
-    height: 400px; /* Altura fija para evitar crecimiento infinito */
+    height: 400px; /* Define una altura fija */
     margin: 20px auto;
 }
+
