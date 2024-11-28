@@ -13,12 +13,15 @@
         <h1>Estadísticas Completas</h1>
         <div id="loading" style="display: none;">Cargando datos...</div>
         <div id="ranking-container"></div>
-        <canvas id="rankingChart"></canvas>
+        <div class="chart-container">
+            <canvas id="rankingChart"></canvas>
+        </div>
         <div class="buttons-container">
             <button onclick="window.location.href='index.html'">Volver</button>
             <button id="reload-btn">Recargar Datos</button>
         </div>
     </div>
+
     <script type="module" src="estadisticas.js"></script>
 </body>
 </html>
