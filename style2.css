@@ -1,0 +1,169 @@
+/* Estilos base para la página */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #2b2d42; /* Fondo oscuro */
+    color: #edf2f4; /* Texto claro */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    gap: 20px; /* Espaciado entre contenedores */
+    padding: 20px;
+}
+
+/* Contenedor principal */
+.container {
+    text-align: center;
+    background-color: #3c404e; /* Fondo de los contenedores */
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Sombra */
+    width: 100%;
+    max-width: 600px;
+    animation: fadeIn 1s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espaciado entre elementos */
+}
+
+/* Título */
+.container h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: #edf2f4; /* Texto claro */
+}
+
+/* Subtítulo */
+.subtitle {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    color: #8d99ae; /* Texto gris */
+}
+
+/* Campos de entrada */
+input[type="text"] {
+    padding: 12px;
+    font-size: 1rem;
+    border: 2px solid #8d99ae; /* Borde gris */
+    border-radius: 5px;
+    width: 100%;
+    max-width: 500px;
+    background-color: #edf2f4; /* Fondo claro */
+    color: #2b2d42; /* Texto oscuro */
+    margin: 0 auto;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="text"]:focus {
+    border-color: #ef233c; /* Rojo al enfocar */
+    box-shadow: 0 0 5px #ef233c;
+}
+
+/* Botones */
+button {
+    background-color: #ef233c; /* Fondo rojo */
+    color: #fff; /* Texto blanco */
+    padding: 12px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #d90429; /* Rojo más oscuro */
+    transform: scale(1.05);
+}
+
+button:focus {
+    outline: none;
+    transform: scale(1.1);
+}
+
+button:focus-visible {
+    outline: 2px solid #ef233c;
+}
+
+/* Resultado */
+.resultado {
+    font-size: 1.2rem;
+    margin-top: 15px;
+    color: #8d99ae; /* Texto gris */
+}
+
+/* GIF */
+#gif img {
+    max-width: 100%;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+/* Contenedor de temas */
+.theme-container {
+    text-align: center;
+    background-color: #3c404e; /* Fondo oscuro */
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Sombra */
+    margin-top: 20px;
+}
+
+.theme-container h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #edf2f4;
+}
+
+.theme-selector {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+}
+
+.theme-selector button {
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #ef233c; /* Rojo */
+    color: #fff; /* Texto blanco */
+    border: none;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    max-width: 150px;
+}
+
+.theme-selector button:hover {
+    background-color: #d90429; /* Rojo más oscuro */
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .container {
+        max-width: 100%;
+        padding: 15px;
+    }
+
+    input[type="text"],
+    button {
+        font-size: 1rem;
+    }
+}
