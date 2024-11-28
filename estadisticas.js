@@ -136,7 +136,7 @@ function actualizarGraficoCompleto(rankingOrdenado) {
         },
         options: {
             responsive: true,
-            maintainAspectRatio: false, // Permite que el gráfico se adapte al contenedor
+            maintainAspectRatio: false,
             plugins: {
                 legend: {
                     position: "top",
@@ -150,7 +150,6 @@ function actualizarGraficoCompleto(rankingOrdenado) {
         },
     });
 }
-
 
 // Configurar el botón de recarga
 document.getElementById("reload-btn").addEventListener("click", () => {
