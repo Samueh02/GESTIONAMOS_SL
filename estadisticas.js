@@ -109,25 +109,28 @@ function actualizarGraficoCompleto(rankingOrdenado) {
         return;
     }
 
-    const labels = rankingOrdenado.map(([palabra]) => palabra);
-    const data = rankingOrdenado.map(([_, count]) => count);
+    // Obtener el contenedor del canvas
+    const canvasContainer = document.getElementById("rankingChart").parentNode;
 
-    const ctx = document.getElementById("rankingChart").getContext("2d");
+    // Eliminar el canvas actual
+    document.getElementById("rankingChart").remove();
 
-    // Destruir la instancia anterior del gráfico si existe
-    if (rankingChart) {
-        rankingChart.destroy();
-    }
+    // Crear un nuevo canvas
+    const newCanvas = document.createElement("canvas");
+    newCanvas.id = "rankingChart";
+    canvasContainer.appendChild(newCanvas);
+
+    const ctx = newCanvas.getContext("2d");
 
     // Crear un nuevo gráfico
     rankingChart = new Chart(ctx, {
         type: "bar",
         data: {
-            labels,
+            labels: rankingOrdenado.map(([palabra]) => palabra),
             datasets: [
                 {
                     label: "Relevancia de Palabras",
-                    data,
+                    data: rankingOrdenado.map(([_, count]) => count),
                     backgroundColor: "rgba(153, 102, 255, 0.2)",
                     borderColor: "rgba(153, 102, 255, 1)",
                     borderWidth: 1,
@@ -157,12 +160,16 @@ function actualizarGraficoCompleto(rankingOrdenado) {
     });
 }
 
-
 // Configurar el botón de recarga
 document.getElementById("reload-btn").addEventListener("click", () => {
     mostrarTodasLasPalabras();
 });
 
 // Cargar los datos al cargar la página
-document.addEventListener("DOMContentLoaded", mostrarTodasLasPalabras);
+document.addEventListener("DOMContentLoaded", () => {
+    if (!window.dataLoaded) {
+        window.dataLoaded = true; // Asegurarte de que solo se cargue una vez
+        mostrarTodasLasPalabras();
+    }
+});
 
