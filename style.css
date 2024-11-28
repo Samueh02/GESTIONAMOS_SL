@@ -3,8 +3,8 @@ body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #2b2d42; /* Fondo oscuro original */
-    color: #edf2f4; /* Texto claro original */
+    background-color: #2b2d42; /* Fondo oscuro */
+    color: #edf2f4; /* Texto claro */
     display: flex;
     flex-direction: column; /* Diseño vertical */
     align-items: center;
@@ -15,39 +15,40 @@ body {
 /* Contenedor principal */
 .container {
     text-align: center;
-    background-color: #3c404e; /* Fondo gris para contenedores */
+    background-color: #3c404e; /* Fondo gris */
     padding: 20px;
     border-radius: 15px;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Sombra para contenedores */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Sombra */
     width: 100%;
-    max-width: 600px;
+    max-width: 500px;
     animation: fadeIn 1s ease;
     display: flex;
     flex-direction: column; /* Elementos alineados verticalmente */
-    gap: 15px; /* Espaciado entre elementos internos */
+    gap: 15px; /* Espaciado interno */
 }
 
-/* Títulos */
+/* Título */
 .container h1 {
-    font-size: 2rem;
+    font-size: 2.2rem;
     margin-bottom: 10px;
     color: #edf2f4; /* Texto claro */
 }
 
+/* Subtítulo */
 .subtitle {
     font-size: 1rem;
-    margin-bottom: 10px;
-    color: #8d99ae; /* Texto gris para subtítulos */
+    margin-bottom: 20px;
+    color: #8d99ae; /* Texto gris */
 }
 
 /* Campos de entrada */
 input[type="text"] {
     padding: 12px;
     font-size: 1rem;
-    border: 2px solid #8d99ae;
+    border: 2px solid #8d99ae; /* Borde gris */
     border-radius: 5px;
     width: 100%;
-    max-width: 500px;
+    max-width: 400px;
     background-color: #edf2f4; /* Fondo claro */
     color: #2b2d42; /* Texto oscuro */
     margin: 0 auto;
@@ -55,23 +56,23 @@ input[type="text"] {
 }
 
 input[type="text"]:focus {
-    border-color: #ef233c; /* Rojo brillante */
+    border-color: #ef233c; /* Rojo */
     box-shadow: 0 0 5px #ef233c;
 }
 
 /* Botones */
 button {
-    background-color: #ef233c; /* Rojo principal */
-    color: #fff;
-    padding: 12px;
+    background-color: #ef233c; /* Rojo */
+    color: #fff; /* Texto blanco */
+    padding: 12px 20px;
     font-size: 1rem;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     width: 100%;
     max-width: 300px;
-    margin: 0 auto;
     transition: background-color 0.3s ease, transform 0.2s ease;
+    margin: 0 auto;
 }
 
 button:hover {
@@ -99,21 +100,34 @@ button:focus-visible {
 #gif img {
     max-width: 100%;
     border-radius: 10px;
+    margin-top: 15px;
+}
+
+/* Botón extra para navegar */
+.container button:last-of-type {
+    margin-top: 20px;
+    background-color: #3a86ff; /* Azul */
+}
+
+.container button:last-of-type:hover {
+    background-color: #2667d5; /* Azul más oscuro */
 }
 
 /* Botones de tema */
 .theme-container {
     text-align: center;
-    background-color: #3c404e;
+    background-color: #3c404e; /* Fondo gris */
     padding: 20px;
     border-radius: 15px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 500px;
 }
 
 .theme-container h2 {
     font-size: 1.5rem;
     margin-bottom: 15px;
-    color: #edf2f4;
+    color: #edf2f4; /* Texto claro */
 }
 
 .theme-selector {
@@ -124,20 +138,20 @@ button:focus-visible {
 }
 
 .theme-selector button {
-    padding: 10px;
+    padding: 10px 15px;
     font-size: 1rem;
     border-radius: 5px;
     cursor: pointer;
-    background-color: #ef233c;
+    background-color: #ef233c; /* Rojo */
     color: #fff;
     border: none;
     transition: background-color 0.3s ease;
     width: 100%;
-    max-width: 150px;
+    max-width: 120px;
 }
 
 .theme-selector button:hover {
-    background-color: #d90429;
+    background-color: #d90429; /* Rojo oscuro */
 }
 
 /* Gráfico */
@@ -162,10 +176,15 @@ canvas {
 @media (max-width: 768px) {
     .container {
         max-width: 100%;
+        padding: 15px;
     }
 
     input[type="text"],
     button {
-        font-size: 1rem;
+        font-size: 0.9rem;
+    }
+
+    .theme-container {
+        max-width: 100%;
     }
 }
