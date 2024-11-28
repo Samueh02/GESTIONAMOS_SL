@@ -174,9 +174,12 @@ function mostrarRankingGlobal() {
 function renderizarGrafico(palabrasRelevantes) {
     const ctx = document.getElementById("rankingChart").getContext("2d");
 
-    // Procesar datos para el gráfico
-    const labels = Object.keys(palabrasRelevantes);
-    const data = Object.values(palabrasRelevantes);
+    // Procesar datos para el gráfico, ordenando y seleccionando los 4 primeros
+    const rankingOrdenado = Object.entries(palabrasRelevantes).sort((a, b) => b[1] - a[1]);
+    const top4 = rankingOrdenado.slice(0, 4); // Obtener los 4 primeros
+
+    const labels = top4.map(([palabra]) => palabra);
+    const data = top4.map(([_, count]) => count);
 
     // Crear el gráfico
     new Chart(ctx, {
@@ -184,7 +187,7 @@ function renderizarGrafico(palabrasRelevantes) {
         data: {
             labels: labels,
             datasets: [{
-                label: "Relevancia de Palabras",
+                label: "Top 4 Palabras Más Relevantes",
                 data: data,
                 backgroundColor: "rgba(75, 192, 192, 0.2)",
                 borderColor: "rgba(75, 192, 192, 1)",
