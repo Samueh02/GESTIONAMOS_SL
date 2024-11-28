@@ -110,13 +110,13 @@ function actualizarGraficoCompleto(rankingOrdenado) {
     }
 
     // Reiniciar el canvas
-    const canvasContainer = document.querySelector(".estadisticas-container");
+    const chartContainer = document.querySelector(".chart-container");
     const oldCanvas = document.getElementById("rankingChart");
     if (oldCanvas) oldCanvas.remove();
 
     const newCanvas = document.createElement("canvas");
     newCanvas.id = "rankingChart";
-    canvasContainer.appendChild(newCanvas);
+    chartContainer.appendChild(newCanvas);
 
     const ctx = newCanvas.getContext("2d");
 
@@ -136,7 +136,7 @@ function actualizarGraficoCompleto(rankingOrdenado) {
         },
         options: {
             responsive: true,
-            maintainAspectRatio: false,
+            maintainAspectRatio: false, // Permite que el gráfico se adapte al contenedor
             plugins: {
                 legend: {
                     position: "top",
@@ -150,6 +150,7 @@ function actualizarGraficoCompleto(rankingOrdenado) {
         },
     });
 }
+
 
 // Configurar el botón de recarga
 document.getElementById("reload-btn").addEventListener("click", () => {
