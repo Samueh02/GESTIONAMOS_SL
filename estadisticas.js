@@ -136,7 +136,7 @@ function actualizarGraficoCompleto(rankingOrdenado) {
         },
         options: {
             responsive: true,
-            maintainAspectRatio: false, // Permitir flexibilidad para pantallas pequeñas
+            maintainAspectRatio: false,
             plugins: {
                 legend: {
                     position: "top",
@@ -157,12 +157,12 @@ function actualizarGraficoCompleto(rankingOrdenado) {
     });
 }
 
+
 // Configurar el botón de recarga
 document.getElementById("reload-btn").addEventListener("click", () => {
     mostrarTodasLasPalabras();
 });
 
 // Cargar los datos al cargar la página
-document.addEventListener("DOMContentLoaded", () => {
-    mostrarTodasLasPalabras();
-});
+document.addEventListener("DOMContentLoaded", mostrarTodasLasPalabras);
+
