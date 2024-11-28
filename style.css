@@ -153,6 +153,24 @@ button:focus-visible {
 .theme-selector button:hover {
     background-color: #d90429; /* Rojo oscuro */
 }
+#ranking-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Define columnas adaptativas */
+    gap: 20px; /* Espaciado entre columnas y filas */
+    margin-top: 20px;
+    text-align: left;
+    background-color: var(--color-fondo-secundario, #edf2f4);
+    color: var(--color-texto-secundario, #2b2d42);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#ranking-container p {
+    margin: 0; /* Elimina márgenes adicionales entre los párrafos */
+    font-size: 1rem;
+    line-height: 1.5; /* Aumenta la altura de línea para legibilidad */
+}
 
 /* Gráfico */
 canvas {
