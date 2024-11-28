@@ -179,3 +179,10 @@ button:focus-visible {
     --color-fondo-secundario: #2b2d42;
     --color-texto-secundario: #edf2f4;
 }
+.chart-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    height: 400px; /* Altura fija para evitar crecimiento infinito */
+    margin: 20px auto;
+}
