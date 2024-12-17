@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body>
     <div class="container">
         <h1>Gestionamos</h1>
@@ -24,18 +26,20 @@
         <canvas id="rankingChart" width="400" height="200"></canvas>
     </div>
     <div class="container">
-    <button onclick="window.location.href='estadisticas.html'">Ver Todas las Palabras</button>
+        <button onclick="window.location.href='estadisticas.html'">Ver Todas las Palabras</button>
     </div>
     <div class="theme-container">
         <h2>Cambiar Tema</h2>
         <div class="theme-selector">
-            <button onclick="cambiarTema('')">Claro</button>
+            <button onclick="cambiarTema('claro')">Claro</button>
             <button onclick="cambiarTema('oscuro')">Oscuro</button>
             <button onclick="cambiarTema('personalizado')">Personalizado</button>
         </div>
     </div>
 
+
     <!-- Importar el script principal -->
     <script type="module" src="script.js"></script>
 </body>
+
 </html>

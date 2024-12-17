@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,14 +9,21 @@
     <link rel="stylesheet" href="style2.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body>
     <div class="estadisticas-container">
         <h1>Estadísticas Completas</h1>
         <div id="loading" style="display: none;">Cargando datos...</div>
         <div id="ranking-container"></div>
+
+        <!-- Contenedor principal para gráficos -->
         <div class="chart-container">
             <canvas id="rankingChart"></canvas>
         </div>
+        <div class="chart-container">
+            <canvas id="lengthDistributionChart"></canvas>
+        </div>
+
         <div class="buttons-container">
             <button onclick="window.location.href='index.html'">Volver</button>
             <button id="reload-btn">Recargar Datos</button>
@@ -24,4 +32,5 @@
 
     <script type="module" src="estadisticas.js"></script>
 </body>
+
 </html>

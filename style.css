@@ -1,69 +1,96 @@
 /* Estilos base */
+
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #2b2d42; /* Fondo oscuro */
-    color: #edf2f4; /* Texto claro */
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    transition: background-color 0.5s ease, color 0.5s ease;
+    /* Texto claro */
     display: flex;
-    flex-direction: column; /* Diseño vertical */
+    flex-direction: column;
+    /* Diseño vertical */
     align-items: center;
     padding: 20px;
-    gap: 20px; /* Espaciado entre contenedores */
+    gap: 20px;
+    /* Espaciado entre contenedores */
 }
 
+
 /* Contenedor principal */
+
 .container {
     text-align: center;
-    background-color: #3c404e; /* Fondo gris */
+    background-color: #3c404e;
+    /* Fondo gris */
     padding: 20px;
     border-radius: 15px;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Sombra */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    /* Sombra */
     width: 100%;
     max-width: 500px;
     animation: fadeIn 1s ease;
     display: flex;
-    flex-direction: column; /* Elementos alineados verticalmente */
-    gap: 15px; /* Espaciado interno */
+    flex-direction: column;
+    /* Elementos alineados verticalmente */
+    gap: 15px;
+    /* Espaciado interno */
 }
 
+
 /* Título */
+
 .container h1 {
     font-size: 2.2rem;
     margin-bottom: 10px;
-    color: #edf2f4; /* Texto claro */
+    color: #edf2f4;
+    /* Texto claro */
 }
 
+
 /* Subtítulo */
+
 .subtitle {
     font-size: 1rem;
     margin-bottom: 20px;
-    color: #8d99ae; /* Texto gris */
+    color: #8d99ae;
+    /* Texto gris */
 }
 
+
 /* Campos de entrada */
+
 input[type="text"] {
     padding: 12px;
     font-size: 1rem;
-    border: 2px solid #8d99ae; /* Borde gris */
+    border: 2px solid #8d99ae;
+    /* Borde gris */
     border-radius: 5px;
     width: 100%;
     max-width: 400px;
-    background-color: #edf2f4; /* Fondo claro */
-    color: #2b2d42; /* Texto oscuro */
+    background-color: #edf2f4;
+    /* Fondo claro */
+    color: #2b2d42;
+    /* Texto oscuro */
     margin: 0 auto;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 input[type="text"]:focus {
-    border-color: #ef233c; /* Rojo */
+    border-color: #ef233c;
+    /* Rojo */
     box-shadow: 0 0 5px #ef233c;
 }
 
+
 /* Botones */
+
 button {
-    background-color: #ef233c; /* Rojo */
-    color: #fff; /* Texto blanco */
+    background-color: #ef233c;
+    /* Rojo */
+    color: #fff;
+    /* Texto blanco */
     padding: 12px 20px;
     font-size: 1rem;
     border: none;
@@ -76,7 +103,8 @@ button {
 }
 
 button:hover {
-    background-color: #d90429; /* Rojo más oscuro */
+    background-color: #d90429;
+    /* Rojo más oscuro */
     transform: scale(1.05);
 }
 
@@ -89,34 +117,45 @@ button:focus-visible {
     outline: 2px solid #ef233c;
 }
 
+
 /* Resultado */
+
 .resultado {
     font-size: 1.2rem;
     margin-top: 15px;
     color: #8d99ae;
 }
 
+
 /* GIF */
+
 #gif img {
     max-width: 100%;
     border-radius: 10px;
     margin-top: 15px;
 }
 
+
 /* Botón extra para navegar */
+
 .container button:last-of-type {
     margin-top: 20px;
-    background-color: #3a86ff; /* Azul */
+    background-color: #3a86ff;
+    /* Azul */
 }
 
 .container button:last-of-type:hover {
-    background-color: #2667d5; /* Azul más oscuro */
+    background-color: #2667d5;
+    /* Azul más oscuro */
 }
 
+
 /* Botones de tema */
+
 .theme-container {
     text-align: center;
-    background-color: #3c404e; /* Fondo gris */
+    background-color: #3c404e;
+    /* Fondo gris */
     padding: 20px;
     border-radius: 15px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
@@ -127,7 +166,8 @@ button:focus-visible {
 .theme-container h2 {
     font-size: 1.5rem;
     margin-bottom: 15px;
-    color: #edf2f4; /* Texto claro */
+    color: #edf2f4;
+    /* Texto claro */
 }
 
 .theme-selector {
@@ -142,7 +182,8 @@ button:focus-visible {
     font-size: 1rem;
     border-radius: 5px;
     cursor: pointer;
-    background-color: #ef233c; /* Rojo */
+    background-color: #ef233c;
+    /* Rojo */
     color: #fff;
     border: none;
     transition: background-color 0.3s ease;
@@ -151,12 +192,16 @@ button:focus-visible {
 }
 
 .theme-selector button:hover {
-    background-color: #d90429; /* Rojo oscuro */
+    background-color: #d90429;
+    /* Rojo oscuro */
 }
+
 #ranking-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Define columnas adaptativas */
-    gap: 20px; /* Espaciado entre columnas y filas */
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    /* Define columnas adaptativas */
+    gap: 20px;
+    /* Espaciado entre columnas y filas */
     margin-top: 20px;
     text-align: left;
     background-color: var(--color-fondo-secundario, #edf2f4);
@@ -167,18 +212,37 @@ button:focus-visible {
 }
 
 #ranking-container p {
-    margin: 0; /* Elimina márgenes adicionales entre los párrafos */
+    margin: 0;
+    /* Elimina márgenes adicionales entre los párrafos */
     font-size: 1rem;
-    line-height: 1.5; /* Aumenta la altura de línea para legibilidad */
+    line-height: 1.5;
+    /* Aumenta la altura de línea para legibilidad */
 }
 
+#ranking-container h3 {
+    grid-column: 1 / -1;
+    /* El título ocupa todo el ancho del grid */
+    margin-bottom: 10px;
+    /* Añade espacio sólo debajo */
+    padding: 0;
+    /* Sin relleno */
+    font-size: 1.2rem;
+    /* Tamaño del texto */
+    color: var(--color-texto-secundario, #2b2d42);
+    /* Color */
+}
+
+
 /* Gráfico */
+
 canvas {
     max-width: 100%;
     height: auto;
 }
 
+
 /* Animaciones */
+
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -190,19 +254,43 @@ canvas {
     }
 }
 
+
 /* Media queries */
+
 @media (max-width: 768px) {
     .container {
         max-width: 100%;
         padding: 15px;
     }
-
     input[type="text"],
     button {
         font-size: 0.9rem;
     }
-
     .theme-container {
         max-width: 100%;
     }
+}
+
+
+/* Variables de tema por defecto */
+
+:root {
+    --color-fondo: #2b2d42;
+    --color-texto: #edf2f4;
+}
+
+
+/* Tema Claro */
+
+.theme-claro {
+    --color-fondo: #edf2f4;
+    --color-texto: #2b2d42;
+}
+
+
+/* Tema Oscuro */
+
+.theme-oscuro {
+    --color-fondo: #2b2d42;
+    --color-texto: #ffffff;
 }
